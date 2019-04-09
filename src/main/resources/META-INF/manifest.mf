@@ -1,0 +1,1 @@
+Main-Class: gr.uom.softeng.team2.argoapp.Main
