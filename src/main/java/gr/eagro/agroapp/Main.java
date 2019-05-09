@@ -1,11 +1,11 @@
-package gr.uom.softeng.team2.argoapp;
+package gr.eagro.agroapp;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
     }
 
