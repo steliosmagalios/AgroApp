@@ -13,15 +13,35 @@ import java.util.Stack;
 public class Main extends Application {
 
     private static Stage window;
-    private static Stack<Window> navigation = new Stack<>();
+    private static Stack<Window> navigation;
 
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
 
         Parent root = FXMLLoader.load(getClass().getResource(EnumWindowLocations.MAIN_MENU_WINDOW.getLocation()));
         window.setScene(new Scene(root));
         window.setTitle("AgroApp");
         window.show();
+    }
+
+    @Override
+    public void init() throws Exception {
+        navigation = new Stack<Window>() {
+            @Override
+            public synchronized String toString() {
+                StringBuilder location = new StringBuilder();
+
+                for(Window item : navigation)
+                    location.append(item).append(" > ");
+
+                return location.toString();
+            }
+        };
+    }
+
+    @Override
+    public void stop() throws Exception {
+        navigation.clear();
     }
 
     public static void main(String[] args) {
@@ -35,14 +55,5 @@ public class Main extends Application {
 
     public static Stack<Window> getNavigation() {
         return navigation;
-    }
-
-    public static String getNavigationText() {
-        StringBuilder location = new StringBuilder();
-
-        for(Window item : navigation)
-            location.append(item).append(" > ");
-
-        return location.toString();
     }
 }
