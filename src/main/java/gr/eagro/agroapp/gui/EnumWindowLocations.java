@@ -9,7 +9,7 @@ public enum EnumWindowLocations {
     DISEASES_RESULT_WINDOW   ("/scenes/DiseasesResultWindowView.fxml"),
     HYBRIDS_WINDOW           ("/scenes/HybridsWindowView.fxml"),
     HYBRIDS_RESULT_WINDOW    ("/scenes/HybridsResultWindowView.fxml"),
-    CALENDAR_WINDOW          ("/scenes/FertilizerResultWindowView.fxml"),
+    CALENDAR_WINDOW          ("/scenes/CalendarWindowView.fxml"),
     STATISTICS_ADD_WINDOW    ("/scenes/StatisticsAddWindowView.fxml"),
     STATISTICS_VIEW_WINDOW   ("/scenes/StatisticsViewWindowView.fxml");
 

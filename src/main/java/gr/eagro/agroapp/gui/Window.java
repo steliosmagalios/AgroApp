@@ -17,10 +17,12 @@ public abstract class Window implements Initializable {
     protected Label navbar;
 
     private String title;
+    private EnumWindowLocations location;
 
-    public Window(String title) {
+    public Window(String title, EnumWindowLocations location) {
         this.title = title;
-        Main.getNavigation().add(title);
+        this.location = location;
+        Main.getNavigation().add(this);
     }
 
     @Override
@@ -35,7 +37,17 @@ public abstract class Window implements Initializable {
 
     public void returnToMainMenu() throws Exception{
         Main.getNavigation().clear();
-        Parent root = FXMLLoader.load(getClass().getResource("/scenes/MainMenuWindowView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(EnumWindowLocations.MAIN_MENU_WINDOW.getLocation()));
         Main.getWindow().setScene(new Scene(root));
+    }
+
+    public void openWindow(EnumWindowLocations window) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource(window.getLocation()));
+        Main.getWindow().setScene(new Scene(root));
+    }
+
+    public void openPreviousWindow() throws Exception {
+        Main.getNavigation().pop();
+        openWindow(Main.getNavigation().pop().location);
     }
 }
