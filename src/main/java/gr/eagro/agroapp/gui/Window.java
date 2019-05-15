@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,6 +16,8 @@ public abstract class Window implements Initializable {
 
     @FXML
     protected Label navbar;
+    @FXML
+    protected Pane backgroundPane;
 
     private String title;
     private EnumWindowLocations location;
@@ -28,6 +31,7 @@ public abstract class Window implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         navbar.setText(Main.getNavigationText());
+        Main.getWindow().setFocused(false);
     }
 
     @Override
