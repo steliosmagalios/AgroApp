@@ -45,9 +45,11 @@ public abstract class Window implements Initializable {
         Main.getWindow().setScene(new Scene(root));
     }
 
-    public void openWindow(EnumWindowLocations window) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource(window.getLocation()));
+    public Window openWindow(EnumWindowLocations window) throws Exception {
+        FXMLLoader loader = new FXMLLoader((getClass().getResource(window.getLocation())));
+        Parent root = loader.load();
         Main.getWindow().setScene(new Scene(root));
+        return loader.getController();
     }
 
     public void openPreviousWindow() throws Exception {
