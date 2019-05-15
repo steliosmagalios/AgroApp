@@ -1,0 +1,18 @@
+.menuBtn {
+    -fx-background-radius: 0;
+    -fx-background-color: #e2e2e2;
+}
+
+.menuBtn:hover {
+    -fx-background-radius: 0;
+    -fx-background-color: #bbb;
+}
+
+.menuBtn:pressed {
+    -fx-background-radius: 0;
+    -fx-background-color: #aaa;
+}
+
+.background {
+    -fx-background-color: #e2e2e2;
+}
