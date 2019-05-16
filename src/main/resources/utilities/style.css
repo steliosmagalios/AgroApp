@@ -13,6 +13,21 @@
     -fx-background-color: #aaa;
 }
 
+.regularBtn {
+    -fx-background-radius: 0;
+    -fx-background-color: #c4c4c4;
+}
+
+.regularBtn:hover {
+    -fx-background-radius: 0;
+    -fx-background-color: #bbb;
+}
+
+.regularBtn:pressed {
+    -fx-background-radius: 0;
+    -fx-background-color: #aaa;
+}
+
 .background {
     -fx-background-color: #e2e2e2;
 }
