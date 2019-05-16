@@ -30,7 +30,7 @@ public abstract class Window implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        navbar.setText(Main.getNavigationText());
+        navbar.setText(Main.getNavigation().toString());
         Main.getWindow().setFocused(false);
     }
 
@@ -39,20 +39,24 @@ public abstract class Window implements Initializable {
         return title;
     }
 
-    public void returnToMainMenu() throws Exception{
+    public void returnToMainMenu() {
         Main.getNavigation().clear();
-        Parent root = FXMLLoader.load(getClass().getResource(EnumWindowLocations.MAIN_MENU_WINDOW.getLocation()));
-        Main.getWindow().setScene(new Scene(root));
+        openWindow(EnumWindowLocations.MAIN_MENU_WINDOW);
     }
 
-    public Window openWindow(EnumWindowLocations window) throws Exception {
-        FXMLLoader loader = new FXMLLoader((getClass().getResource(window.getLocation())));
-        Parent root = loader.load();
-        Main.getWindow().setScene(new Scene(root));
-        return loader.getController();
+    public Window openWindow(EnumWindowLocations window) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(window.getLocation()));
+            Parent root = loader.load();
+            Main.getWindow().setScene(new Scene(root));
+            return loader.getController();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public void openPreviousWindow() throws Exception {
+    public void openPreviousWindow() {
         Main.getNavigation().pop();
         openWindow(Main.getNavigation().pop().location);
     }

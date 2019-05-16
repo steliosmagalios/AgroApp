@@ -25,7 +25,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void init() throws Exception {
+    public void init() {
         navigation = new Stack<Window>() {
             @Override
             public synchronized String toString() {
@@ -40,12 +40,11 @@ public class Main extends Application {
     }
 
     @Override
-    public void stop() throws Exception {
+    public void stop() {
         navigation.clear();
     }
 
     public static void main(String[] args) {
-        navigation = new Stack<>();
         launch(args);
     }
 
