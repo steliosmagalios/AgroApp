@@ -1,12 +1,14 @@
 package gr.eagro.agroapp;
 
 public class CalendarEntry {
+	private int day;
 	private int week;
 	private int month;
 	private int year;
 	private String displayText;
 	
-	public CalendarEntry(int week, int month, int year, String displayText) {
+	public CalendarEntry(int day, int week, int month, int year, String displayText) {
+		this.day=day;
 		this.week = week;
 		this.month = month;
 		this.year = year;
