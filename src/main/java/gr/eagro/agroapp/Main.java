@@ -1,7 +1,7 @@
 package gr.eagro.agroapp;
 
-import gr.eagro.agroapp.gui.EnumWindowLocations;
-import gr.eagro.agroapp.gui.Window;
+import gr.eagro.agroapp.gui.ApplicationWindow;
+import gr.eagro.agroapp.gui.EnumWindowLocation;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,25 +13,29 @@ import java.util.Stack;
 public class Main extends Application {
 
     private static Stage window;
-    private static Stack<Window> navigation;
+    private static Stack<ApplicationWindow> navigation;
 
-    public void start(Stage primaryStage) throws Exception {
-        window = primaryStage;
+    public void start(Stage primaryStage) {
+        try {
+            window = primaryStage;
 
-        Parent root = FXMLLoader.load(getClass().getResource(EnumWindowLocations.MAIN_MENU_WINDOW.getLocation()));
-        window.setScene(new Scene(root));
-        window.setTitle("AgroApp");
-        window.show();
+            Parent root = FXMLLoader.load(getClass().getResource(EnumWindowLocation.MAIN_MENU_WINDOW.getLocation()));
+            window.setScene(new Scene(root));
+            window.setTitle("AgroApp");
+            window.show();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void init() {
-        navigation = new Stack<Window>() {
+        navigation = new Stack<ApplicationWindow>() {
             @Override
             public synchronized String toString() {
                 StringBuilder location = new StringBuilder();
 
-                for(Window item : navigation)
+                for(ApplicationWindow item : navigation)
                     location.append(item).append(" > ");
 
                 return location.toString();
@@ -52,7 +56,8 @@ public class Main extends Application {
         return window;
     }
 
-    public static Stack<Window> getNavigation() {
+    public static Stack<ApplicationWindow> getNavigation() {
         return navigation;
     }
+
 }
