@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-
+<?import javafx.scene.text.*?>
 <Pane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@../utilities/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.eagro.agroapp.gui.FertilizerWindow">
    <children>
       <ImageView fitHeight="85.0" fitWidth="300.0" layoutX="966.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -26,21 +20,54 @@
          <font>
             <Font size="14.0" />
          </font></Button>
-      <ListView fx:id="list" layoutX="311.0" layoutY="204.0" prefHeight="313.0" prefWidth="313.0" />
       <Button layoutX="1087.0" layoutY="676.0" mnemonicParsing="false" onAction="#openResultWindow" styleClass="regularBtn" text="Καταχώρηση Δεδομένων">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <RadioButton fx:id="rbtnTree" layoutX="57.0" layoutY="131.0" mnemonicParsing="false" onAction="#rbtnTreeClick" text="Δέντρα">
+      <ListView fx:id="plantList" layoutX="685.0" layoutY="158.0" prefHeight="446.0" prefWidth="491.0" />
+      <Label fx:id="labelSelectFromList" layoutX="685.0" layoutY="128.0" prefHeight="30.0" prefWidth="491.0" text="Κείμενο για την επιλογή του ταδε:">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnSelectTree" contentDisplay="TOP" layoutX="136.0" layoutY="191.0" mnemonicParsing="false" onAction="#treeButtonSelected" prefHeight="175.0" prefWidth="150.0" styleClass="menuBtn" text="Δέντρα">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/selectTreeImg.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnSelectCrop" contentDisplay="TOP" layoutX="363.0" layoutY="191.0" mnemonicParsing="false" onAction="#cropButtonSelected" prefHeight="175.0" prefWidth="150.0" styleClass="menuBtn" text="Φύτρες">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/selectCropImg.png" />
+               </image></ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Label fx:id="labelDisplayText" alignment="CENTER" layoutX="93.0" layoutY="402.0" prefHeight="27.0" prefWidth="482.0" text="Κείμενο για την εισαγωγή δεδομένων από τον χρήστη" textAlignment="CENTER">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="input" alignment="CENTER_RIGHT" layoutX="230.0" layoutY="448.0" prefHeight="31.0" prefWidth="208.0" promptText="π.χ. 15">
          <font>
             <Font size="15.0" />
          </font>
-      </RadioButton>
-      <RadioButton fx:id="rbtnCrop" layoutX="57.0" layoutY="152.0" mnemonicParsing="false" onAction="#rbtnCropClick" text="Φύτρες">
+      </TextField>
+      <Label layoutX="221.0" layoutY="128.0" text="Επιλέξτε μία κατηγορία">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
-      </RadioButton>
+      </Label>
    </children>
 </Pane>

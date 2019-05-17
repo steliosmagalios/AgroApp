@@ -12,7 +12,7 @@ import javafx.scene.layout.Pane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public abstract class Window implements Initializable {
+public abstract class ApplicationWindow implements Initializable {
 
     @FXML
     protected Label navbar;
@@ -20,9 +20,9 @@ public abstract class Window implements Initializable {
     protected Pane backgroundPane;
 
     private String title;
-    private EnumWindowLocations location;
+    private EnumWindowLocation location;
 
-    public Window(String title, EnumWindowLocations location) {
+    public ApplicationWindow(String title, EnumWindowLocation location) {
         this.title = title;
         this.location = location;
         Main.getNavigation().add(this);
@@ -31,7 +31,7 @@ public abstract class Window implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         navbar.setText(Main.getNavigation().toString());
-        Main.getWindow().setFocused(false);
+        navbar.requestFocus();
     }
 
     @Override
@@ -41,10 +41,10 @@ public abstract class Window implements Initializable {
 
     public void returnToMainMenu() {
         Main.getNavigation().clear();
-        openWindow(EnumWindowLocations.MAIN_MENU_WINDOW);
+        openWindow(EnumWindowLocation.MAIN_MENU_WINDOW);
     }
 
-    public Window openWindow(EnumWindowLocations window) {
+    public ApplicationWindow openWindow(EnumWindowLocation window) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(window.getLocation()));
             Parent root = loader.load();
