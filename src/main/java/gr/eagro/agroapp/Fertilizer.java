@@ -30,11 +30,13 @@ public class Fertilizer {
     public File getInfo(){
 
         File f = new File("./info/fertilizer/" + this.id + ".txt" );
+
+        // check if the file exists
         try {
             Scanner scan = new Scanner(f);
 
             String line = scan.nextLine();
-            if(line.equals(null)){
+            if(line.isEmpty()){
                 return null;
             }
         } catch (FileNotFoundException e) {
