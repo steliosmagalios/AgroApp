@@ -13,9 +13,18 @@
     -fx-background-color: #aaa;
 }
 
+.menuBtnSelected {
+    -fx-background-color: #aaa;
+}
+
+.menuBtn:selected {
+    -fx-background-color: #aaa;
+}
+
 .regularBtn {
     -fx-background-radius: 0;
     -fx-background-color: #c4c4c4;
+    -fx-font-size: 15
 }
 
 .regularBtn:hover {
@@ -25,6 +34,10 @@
 
 .regularBtn:pressed {
     -fx-background-radius: 0;
+    -fx-background-color: #aaa;
+}
+
+.regularBtn:selected {
     -fx-background-color: #aaa;
 }
 

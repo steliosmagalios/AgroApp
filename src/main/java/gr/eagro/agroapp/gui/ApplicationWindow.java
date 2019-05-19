@@ -14,10 +14,8 @@ import java.util.ResourceBundle;
 
 public abstract class ApplicationWindow implements Initializable {
 
-    @FXML
-    protected Label navbar;
-    @FXML
-    protected Pane backgroundPane;
+    @FXML protected Label navbar;
+    @FXML protected Pane backgroundPane;
 
     private String title;
     private EnumWindowLocation location;
@@ -56,8 +54,8 @@ public abstract class ApplicationWindow implements Initializable {
         return null;
     }
 
-    public void openPreviousWindow() {
+    public ApplicationWindow openPreviousWindow() {
         Main.getNavigation().pop();
-        openWindow(Main.getNavigation().pop().location);
+        return openWindow(Main.getNavigation().pop().location);
     }
 }
