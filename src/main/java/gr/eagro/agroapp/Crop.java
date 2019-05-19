@@ -8,17 +8,13 @@ public class Crop extends Plant {
 
     /*Constructor*/
 
-    public Crop(String id, Fertilizer fertilizer, String name, ArrayList<Plant> hybrids, boolean isHybrid, boolean hasHybrids, double quantity) {
-        super(id, fertilizer, name, hybrids, isHybrid, hasHybrids);
+    public Crop(String id, Fertilizer fertilizer, String name, boolean isHybrid, double quantity) {
+        super(id, fertilizer, name, isHybrid);
         this.quantity = quantity;
     }
 
-    public Crop(String id, Fertilizer fertilizer, String name, boolean isHybrid, boolean hasHybrids, double quantity) {
-        super(id, fertilizer, name, isHybrid, hasHybrids);
-        this.quantity = quantity;
-    }
-
-    public Crop(double quantity) {
+    public Crop(String id, Fertilizer fertilizer, String name, double quantity) {
+        super(id, fertilizer, name);
         this.quantity = quantity;
     }
 }

@@ -8,17 +8,14 @@ public class Tree extends Plant {
 
     /*Constructor*/
 
-    public Tree(String id, Fertilizer fertilizer, String name, ArrayList<Plant> hybrids, boolean isHybrid, boolean hasHybrids, int quantity) {
-        super(id, fertilizer, name, hybrids, isHybrid, hasHybrids);
+    public Tree(String id, Fertilizer fertilizer, String name, boolean isHybrid, int quantity) {
+        super(id, fertilizer, name, isHybrid);
         this.quantity = quantity;
     }
 
-    public Tree(String id, Fertilizer fertilizer, String name, boolean isHybrid, boolean hasHybrids, int quantity) {
-        super(id, fertilizer, name, isHybrid, hasHybrids);
-        this.quantity = quantity;
-    }
-
-    public Tree(int quantity) {
+    public Tree(String id, Fertilizer fertilizer, String name, int quantity) {
+        super(id, fertilizer, name);
         this.quantity = quantity;
     }
 }
+

@@ -16,16 +16,28 @@ public class Fertilizer {
 
     }
 
-    public double calculateCost(double fertilizerQuantity, double cost) {
+    public double calculateCost(double fertilizerQuantity) {
         double totalcost;
-        totalcost = fertilizerQuantity * cost;
+        totalcost = fertilizerQuantity * this.cost;
         return totalcost;
     }
 
-    //public double calculateQuantity(double plantQuiantity) {
-        /* somehow i have to return the quantinty of the fertilizer required, based on the quantity of the plants*/
+    public double calculateQuantity(Plant aPlant) {
+        File f = new File("./info/plants/fertilizer/" + aPlant.getId() + ".txt");
 
-    //}
+        try {
+            Scanner scan = new Scanner(f);
+
+            String q = scan.next();
+            if (!(q.isEmpty())) {
+                return this.quantity * Double.parseDouble(q);
+            } else return 0;
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
     public File getInfo(){
 

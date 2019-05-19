@@ -9,40 +9,42 @@ public abstract class Plant {
     protected String id;
     protected Fertilizer fertilizer;
     protected String name;
-    protected ArrayList<Plant> hybrids = new ArrayList<Plant>();
+    protected ArrayList<Plant> hybrids ;
+    protected ArrayList<String> diseases;
     protected boolean isHybrid;
-    protected boolean hasHybrids;
 
 
 
     /* Constructor */
 
-    public Plant(String id, Fertilizer fertilizer, String name, ArrayList<Plant> hybrids, boolean isHybrid, boolean hasHybrids) {
-        this.id = id;
-        this.fertilizer = fertilizer;
-        this.name = name;
-        this.hybrids = hybrids;
-        this.isHybrid = isHybrid;
 
-        if(this.isHybrid){
-            this.addHyrbid(this);
-        }
-
-        this.hasHybrids = hasHybrids;
-    }
-    public Plant(String id, Fertilizer fertilizer, String name,  boolean isHybrid, boolean hasHybrids) {
+    public Plant(String id, Fertilizer fertilizer, String name, boolean isHybrid) {
         this.id = id;
         this.fertilizer = fertilizer;
         this.name = name;
         this.isHybrid = isHybrid;
-        this.hasHybrids = hasHybrids;
+
+    }
+    public Plant(String id, Fertilizer fertilizer, String name) {
+        this.id = id;
+        this.fertilizer = fertilizer;
+        this.name = name;
+        this.isHybrid = false;
     }
 
-    public Plant(){}
 
     public void addHyrbid(Plant p){
-        if(this.isHybrid)
+        if(p.isHybrid)
             hybrids.add(p); /* methodos poy prosthetei sti lista twn ybridiwn ena fyto*/
+    }
+
+    public void addDisease(String d){
+
+        diseases.add(d);
+    }
+
+    public boolean hasHybrids(){
+        return this.hybrids.size()>0 ;
     }
 
    public File getInfo(String key, String resultId){
@@ -94,59 +96,36 @@ public abstract class Plant {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+
 
     public Fertilizer getFertilizer() {
         return fertilizer;
     }
 
-    public void setFertilizer(Fertilizer fertilizer) {
-        this.fertilizer = fertilizer;
-    }
+
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+
 
     public ArrayList<Plant> getHybrids() {
         return hybrids;
     }
 
-    public void setHybrids(ArrayList<Plant> hybrids) {
-        this.hybrids = hybrids;
-    }
+
 
     public boolean isHybrid() {
         return isHybrid;
     }
 
-    public void setHybrid(boolean hybrid) {
-        isHybrid = hybrid;
-    }
 
-    public boolean isHasHybrids() {
-        return hasHybrids;
-    }
 
-    public void setHasHybrids(boolean hasHybrids) {
-        this.hasHybrids = hasHybrids;
-    }
+
 
     @Override
     public String toString() {
-        return "Plant{" +
-                "id='" + id + '\'' +
-                ", fertilizer=" + fertilizer +
-                ", name='" + name + '\'' +
-                ", hybrids=" + hybrids +
-                ", isHybrid=" + isHybrid +
-                ", hasHybrids=" + hasHybrids +
-                '}';
+        return this.name;
     }
 }
