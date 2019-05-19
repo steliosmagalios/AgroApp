@@ -72,25 +72,7 @@ public abstract class Plant {
         return f;
    }
 
-   public File getInfo(String key){
-        File f;
-        if (key.toLowerCase().equals("fertilizer")){
-            f= this.fertilizer.getInfo();
-        }else f = null;
-       // check if the file exists
-       try {
-           Scanner scan = new Scanner(f);
 
-           String line = scan.nextLine();
-           if(line.isEmpty()){
-               return null;
-           }
-       } catch (FileNotFoundException e) {
-           e.printStackTrace();
-       }
-
-        return f;
-   }
 
     public String getId() {
         return id;
