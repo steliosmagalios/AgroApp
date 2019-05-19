@@ -2,27 +2,28 @@ package gr.eagro.agroapp.gui;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class FertilizerWindow extends ApplicationWindow {
 
+    //todo change type of ListView to <Plant>
     @FXML private ListView<Object> plantList;
-    @FXML private Button btnSelectTree;
-    @FXML private Button btnSelectCrop;
+    @FXML private RadioButton btnSelectTree;
+    @FXML private RadioButton btnSelectCrop;
     @FXML private TextField input;
 
     @FXML private Label labelDisplayText;
     @FXML private Label labelSelectFromList;
 
-    private ArrayList<Object> treeItems;
-    private ArrayList<Object> cropItems;
+    //todo change type of ArrayList to <Tree>
+    private List<Object> treeItems;
+    //todo change type of ArrayList to <Crop>
+    private List<Object> cropItems;
 
     public FertilizerWindow() {
         super("Λίπασμα", EnumWindowLocation.FERTILIZER_WINDOW);
@@ -31,9 +32,11 @@ public class FertilizerWindow extends ApplicationWindow {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
+        btnSelectCrop.getStyleClass().remove("radio-button");
+        btnSelectTree.getStyleClass().remove("radio-button");
 
         //todo Enter correct data to ArrayLists
-        //For now the list initialize here with no items
+        //For now the list initializes here with no items
         treeItems = new ArrayList<>();
 
         for(int i=0; i<10; i++) {
@@ -76,7 +79,12 @@ public class FertilizerWindow extends ApplicationWindow {
 //        //todo call the correct ones
 //        controller.getItems(amount, 12.45f, null);
 
-        openWindow(EnumWindowLocation.FERTILIZER_RESULT_WINDOW);
+        FertilizerResultWindow controller = ((FertilizerResultWindow) openWindow(EnumWindowLocation.FERTILIZER_RESULT_WINDOW));
+        //todo call the correct ones
+        controller.getItems(amount, 12.45f, null);
+
+//        //TODO: remove
+//        openWindow(EnumWindowLocation.FERTILIZER_RESULT_WINDOW);
     }
 
     public void treeButtonSelected() {
@@ -84,10 +92,6 @@ public class FertilizerWindow extends ApplicationWindow {
         labelDisplayText.setText("Πόσα δέντρα έχει το χωράφι;");
         labelSelectFromList.setText("Επιλέξτε ένα δέντρο:");
         input.setText("");
-
-        if(!btnSelectTree.getStyleClass().contains("menuBtnSelected"))
-            btnSelectTree.getStyleClass().add("menuBtnSelected");
-        btnSelectCrop.getStyleClass().remove("menuBtnSelected");
     }
 
     public void cropButtonSelected() {
@@ -95,9 +99,5 @@ public class FertilizerWindow extends ApplicationWindow {
         labelDisplayText.setText("Πόσα στρέμματα είναι το χωράφι;");
         labelSelectFromList.setText("Επιλέξτε μία φύτρα:");
         input.setText("");
-
-        if(!btnSelectCrop.getStyleClass().contains("menuBtnSelected"))
-            btnSelectCrop.getStyleClass().add("menuBtnSelected");
-        btnSelectTree.getStyleClass().remove("menuBtnSelected");
     }
 }

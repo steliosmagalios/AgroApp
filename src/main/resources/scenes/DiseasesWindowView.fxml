@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
 <?import java.lang.String?>
-<Pane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@../utilities/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.eagro.agroapp.gui.FertilizerWindow">
+<Pane fx:id="backgroundPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@../utilities/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.eagro.agroapp.gui.DiseasesWindow">
    <children>
       <ImageView fitHeight="85.0" fitWidth="300.0" layoutX="966.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -66,16 +66,6 @@
             <String fx:value="toggle-button" />
          </styleClass>
       </RadioButton>
-      <Label fx:id="labelDisplayText" alignment="CENTER" layoutX="93.0" layoutY="402.0" prefHeight="27.0" prefWidth="482.0" text="Κείμενο για την εισαγωγή δεδομένων από τον χρήστη" textAlignment="CENTER">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Label>
-      <TextField fx:id="input" alignment="CENTER_RIGHT" layoutX="230.0" layoutY="448.0" prefHeight="31.0" prefWidth="208.0" promptText="π.χ. 15">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
       <Label layoutX="221.0" layoutY="128.0" text="Επιλέξτε μία κατηγορία">
          <font>
             <Font name="System Bold" size="20.0" />
