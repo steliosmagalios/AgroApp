@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.*?>
+<Pane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@../utilities/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.eagro.agroapp.gui.StatisticsGraphWindow">
+   <children>
+      <ImageView fitHeight="85.0" fitWidth="300.0" layoutX="966.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="navbar" layoutX="20.0" layoutY="20.0" prefHeight="21.0" prefWidth="500.0" text="Location">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button layoutX="14.0" layoutY="676.0" mnemonicParsing="false" onAction="#openPreviousWindow" styleClass="regularBtn" text="Προηγούμενο">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="1043.0" layoutY="676.0" mnemonicParsing="false" onAction="#returnToMainMenu" styleClass="regularBtn" text="Επιστροφή στο Αρχικό Μενού">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <LineChart layoutX="17.0" layoutY="115.0" prefHeight="400.0" prefWidth="620.0" title="Παραγωγή">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <LineChart layoutX="643.0" layoutY="115.0" prefHeight="400.0" prefWidth="620.0" title="Εισόδημα">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <Label layoutX="124.0" layoutY="515.0" text="Μέσος όρος παραγωγής:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="742.0" layoutY="515.0" text="Μέσος όρος εισοδήματος:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="124.0" layoutY="578.0" text="Εκτιμώμενος ρυθμός ανάπτυξης:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="338.0" layoutY="515.0" text="Κείμενο">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="400.0" layoutY="578.0" text="Κείμενο">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="966.0" layoutY="515.0" text="Κείμενο">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

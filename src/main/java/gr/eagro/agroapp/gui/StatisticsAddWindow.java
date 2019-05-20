@@ -20,7 +20,6 @@ public class StatisticsAddWindow extends ApplicationWindow {
     @FXML private TextField fieldIncome;
     @FXML private TableView<TableEntry> dataTable;
 
-
     private ObservableList<TableEntry> data;
 
     public StatisticsAddWindow() {
@@ -47,15 +46,20 @@ public class StatisticsAddWindow extends ApplicationWindow {
     }
 
     public void addDataToTable() {
-
-        try{
+//        try{
             data.add(new TableEntry(
                     Integer.parseInt(fieldYear.getText()),
                     Double.parseDouble(fieldIncome.getText()),
                     Double.parseDouble(fieldQuantity.getText())
             ));
-        }catch(NumberFormatException e) {
-            e.printStackTrace();
+//        }catch(NumberFormatException e) {
+//            fieldYear.clear();
+//            fieldIncome.clear();
+//            fieldQuantity.clear();
+//
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setContentText("Δεδομένα!");
+//            alert.show();
             // TODO: 20-May-19 Throw alert and wipe the fields
         }
     }
@@ -63,12 +67,15 @@ public class StatisticsAddWindow extends ApplicationWindow {
     public void openResultWindow() {
         // TODO: 20-May-19 Write method
         // TODO: 20-May-19 Check for at least two entries on the table to display statistics
-        openWindow(EnumWindowLocation.STATISTICS_VIEW_WINDOW);
+
+//        if(data.size() < 2) {
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setContentText("Όχι αρκετά δεδομένα!");
+//            alert.show();
+//        }
+
+        openWindow(EnumWindowLocation.STATISTICS_GRAPH_WINDOW);
     }
-
-
-
-
 
     public class TableEntry {
         private SimpleIntegerProperty year;
