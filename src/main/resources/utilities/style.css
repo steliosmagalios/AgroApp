@@ -44,3 +44,7 @@
 .background {
     -fx-background-color: #e2e2e2;
 }
+
+#data-table .table-cell {
+    -fx-alignment: center-right;
+}

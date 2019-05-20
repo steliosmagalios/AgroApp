@@ -2,7 +2,10 @@ package gr.eagro.agroapp.gui;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -81,7 +84,7 @@ public class FertilizerWindow extends ApplicationWindow {
 
         FertilizerResultWindow controller = ((FertilizerResultWindow) openWindow(EnumWindowLocation.FERTILIZER_RESULT_WINDOW));
         //todo call the correct ones
-        controller.getItems(amount, 12.45f, null);
+//        controller.getItems(amount, 12.45f, null);
 
 //        //TODO: remove
 //        openWindow(EnumWindowLocation.FERTILIZER_RESULT_WINDOW);
