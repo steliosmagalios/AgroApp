@@ -2,26 +2,24 @@ package gr.eagro.agroapp;
 
 public class CalendarEntry {
 	private int day;
-	private int week;
 	private int month;
 	private int year;
 	private String displayText;
 	
-	public CalendarEntry(int day, int week, int month, int year, String displayText) {
+	public CalendarEntry(int day, int month, int year, String displayText) {
 		this.day=day;
-		this.week = week;
 		this.month = month;
 		this.year = year;
 		this.displayText = displayText;
 	}
-	
 
-	public int getWeek() {
-		return week;
+
+	public int getDay() {
+		return day;
 	}
 
-	public void setWeek(int week) {
-		this.week = week;
+	public void setDay(int day) {
+		this.day = day;
 	}
 
 	public int getMonth() {
@@ -47,7 +45,4 @@ public class CalendarEntry {
 	public void setDisplayText(String displayText) {
 		this.displayText = displayText;
 	}
-	
-	
-	
 }
