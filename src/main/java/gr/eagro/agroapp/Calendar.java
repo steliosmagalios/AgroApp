@@ -3,8 +3,16 @@ package gr.eagro.agroapp;
 import java.util.ArrayList;
 
 public class Calendar {
+
 	private ArrayList<CalendarEntry> entries;
-	
+
+
+	public Calendar(ArrayList<CalendarEntry> entries) {
+		this.entries = entries;
+	}
+
+	public Calendar(){}
+
 	public void addEntry(CalendarEntry entry) {
 		entries.add(entry);
 	}
