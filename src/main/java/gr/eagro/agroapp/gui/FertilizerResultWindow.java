@@ -1,5 +1,6 @@
 package gr.eagro.agroapp.gui;
 
+import gr.eagro.agroapp.Plant;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -33,10 +34,7 @@ public class FertilizerResultWindow extends ApplicationWindow {
 
     }
 
-    public void getItems(int kgToDisplay, double priceToDisplay, File fileToDisplay) {
-        this.kgToDisplay = kgToDisplay;
-        this.priceToDisplay = priceToDisplay;
-        this.fileToDisplay = fileToDisplay;
+    public void getData(Plant plant, int quantity) {
         initializeImportedComponents();
     }
 

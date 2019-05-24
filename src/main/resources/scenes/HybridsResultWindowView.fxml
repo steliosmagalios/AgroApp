@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.*?>
+<Pane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@../utilities/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.eagro.agroapp.gui.HybridsResultWindow">
+   <children>
+      <ImageView fitHeight="85.0" fitWidth="300.0" layoutX="966.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="navbar" layoutX="20.0" layoutY="20.0" prefHeight="21.0" prefWidth="500.0" text="Location">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="diseaseInfoArea" editable="false" layoutX="427.0" layoutY="144.0" prefHeight="504.0" prefWidth="838.0" wrapText="true" />
+      <Label layoutX="85.0" layoutY="104.0" text="Επιλέξτε μία ασθένεια:">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Button layoutX="14.0" layoutY="676.0" mnemonicParsing="false" onAction="#openPreviousWindow" styleClass="regularBtn" text="Προηγούμενο">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="1043.0" layoutY="676.0" mnemonicParsing="false" onAction="#returnToMainMenu" styleClass="regularBtn" text="Επιστροφή στο Αρχικό Μενού" textAlignment="RIGHT">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Label layoutX="427.0" layoutY="104.0" text="Πληροφορίες για την ασθένεια:">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="84.0" layoutY="143.0" prefHeight="504.0" prefViewportHeight="504.0" prefViewportWidth="269.0" prefWidth="271.0">
+         <content>
+            <VBox fx:id="diseasesSelectionBox" layoutX="85.0" layoutY="144.0" />
+         </content>
+      </ScrollPane>
+      <Label fx:id="infoLabel" layoutX="810.0" layoutY="104.0" prefHeight="36.0" prefWidth="455.0">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

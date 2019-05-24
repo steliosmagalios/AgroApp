@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class Main extends Application {
@@ -15,11 +16,13 @@ public class Main extends Application {
     private static Stage window;
     private static Stack<ApplicationWindow> navigation;
 
+    private static ArrayList<Plant> plants;
+
     public void start(Stage primaryStage) {
         try {
             window = primaryStage;
 
-            Parent root = FXMLLoader.load(getClass().getResource(EnumWindowLocation.MAIN_MENU_WINDOW.getLocation()));
+            Parent root = FXMLLoader.load(getClass().getResource(EnumWindowLocation.CALENDAR_WINDOW.getLocation()));
             window.setScene(new Scene(root));
             window.setTitle("AgroApp");
             window.show();
@@ -41,6 +44,10 @@ public class Main extends Application {
                 return location.toString();
             }
         };
+
+        plants = new ArrayList<>();
+        plants.add(new Tree("01", new Fertilizer("00", 12f, 10.45f), "Cherry", 50));
+        plants.add(new Crop("02", new Fertilizer("00", 12f, 10.45f), "Strawberry", 100));
     }
 
     @Override
@@ -60,4 +67,7 @@ public class Main extends Application {
         return navigation;
     }
 
+    public static ArrayList<Plant> getPlants() {
+        return plants;
+    }
 }

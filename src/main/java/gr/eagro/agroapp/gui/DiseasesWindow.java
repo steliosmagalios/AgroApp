@@ -1,5 +1,9 @@
 package gr.eagro.agroapp.gui;
 
+import gr.eagro.agroapp.Crop;
+import gr.eagro.agroapp.Main;
+import gr.eagro.agroapp.Plant;
+import gr.eagro.agroapp.Tree;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -12,16 +16,13 @@ import java.util.ResourceBundle;
 
 public class DiseasesWindow extends ApplicationWindow {
 
-    //TODO: change type of ListView to <Plant>
-    @FXML private ListView<Object> plantList;
     @FXML private RadioButton btnSelectTree;
     @FXML private RadioButton btnSelectCrop;
+    @FXML private ListView<Plant> plantList;
     @FXML private Label labelSelectFromList;
 
-    //TODO: change type of ArrayList to <Tree>
-    private ArrayList<Object> treeItems;
-    //TODO: change type of ArrayList to <Crop>
-    private ArrayList<Object> cropItems;
+    private ArrayList<Tree> treeItems;
+    private ArrayList<Crop> cropItems;
 
     public DiseasesWindow() {
         super("Ασθένειες", EnumWindowLocation.DISEASES_WINDOW);
@@ -33,11 +34,7 @@ public class DiseasesWindow extends ApplicationWindow {
         btnSelectCrop.getStyleClass().remove("radio-button");
         btnSelectTree.getStyleClass().remove("radio-button");
 
-        //todo remove
-        treeItems = new ArrayList<>();
-        cropItems = new ArrayList<>();
-
-        treeButtonSelected();
+        getData(Main.getPlants());
     }
 
     public void treeButtonSelected() {
@@ -52,5 +49,17 @@ public class DiseasesWindow extends ApplicationWindow {
 
     public void openResultWindow() {
         openWindow(EnumWindowLocation.DISEASES_RESULT_WINDOW);
+    }
+
+    public void getData(ArrayList<Plant> plantList) {
+        treeItems = new ArrayList<>();
+        cropItems = new ArrayList<>();
+        plantList.forEach(plant -> {
+            if(plant instanceof Tree)
+                treeItems.add(((Tree) plant));
+            else
+                cropItems.add(((Crop) plant));
+        });
+        treeButtonSelected();
     }
 }

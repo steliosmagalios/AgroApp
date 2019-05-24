@@ -27,7 +27,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <LineChart layoutX="17.0" layoutY="115.0" prefHeight="400.0" prefWidth="620.0" title="Παραγωγή">
+      <LineChart fx:id="productionChart" layoutX="17.0" layoutY="115.0" prefHeight="400.0" prefWidth="620.0" title="Παραγωγή">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -35,7 +35,7 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <LineChart layoutX="643.0" layoutY="115.0" prefHeight="400.0" prefWidth="620.0" title="Εισόδημα">
+      <LineChart fx:id="incomeChart" layoutX="643.0" layoutY="115.0" prefHeight="400.0" prefWidth="620.0" title="Εισόδημα">
          <xAxis>
             <CategoryAxis side="BOTTOM" />
          </xAxis>

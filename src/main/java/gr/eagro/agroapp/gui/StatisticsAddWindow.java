@@ -15,10 +15,14 @@ import java.util.ResourceBundle;
 
 public class StatisticsAddWindow extends ApplicationWindow {
 
-    @FXML private TextField fieldYear;
-    @FXML private TextField fieldQuantity;
-    @FXML private TextField fieldIncome;
-    @FXML private TableView<TableEntry> dataTable;
+    @FXML
+    private TextField fieldYear;
+    @FXML
+    private TextField fieldQuantity;
+    @FXML
+    private TextField fieldIncome;
+    @FXML
+    private TableView<TableEntry> dataTable;
 
     private ObservableList<TableEntry> data;
 
@@ -47,11 +51,11 @@ public class StatisticsAddWindow extends ApplicationWindow {
 
     public void addDataToTable() {
 //        try{
-            data.add(new TableEntry(
-                    Integer.parseInt(fieldYear.getText()),
-                    Double.parseDouble(fieldIncome.getText()),
-                    Double.parseDouble(fieldQuantity.getText())
-            ));
+        data.add(new TableEntry(
+                Integer.parseInt(fieldYear.getText()),
+                Double.parseDouble(fieldIncome.getText()),
+                Double.parseDouble(fieldQuantity.getText())
+        ));
 //        }catch(NumberFormatException e) {
 //            fieldYear.clear();
 //            fieldIncome.clear();
@@ -60,8 +64,8 @@ public class StatisticsAddWindow extends ApplicationWindow {
 //            Alert alert = new Alert(Alert.AlertType.ERROR);
 //            alert.setContentText("Δεδομένα!");
 //            alert.show();
-            // TODO: 20-May-19 Throw alert and wipe the fields
-        }
+        // TODO: 20-May-19 Throw alert and wipe the fields
+//        }
     }
 
     public void openResultWindow() {
