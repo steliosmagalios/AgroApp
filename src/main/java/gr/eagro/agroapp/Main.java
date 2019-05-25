@@ -17,12 +17,13 @@ public class Main extends Application {
     private static Stack<ApplicationWindow> navigation;
 
     private static ArrayList<Plant> plants;
+    private static Calendar calendar;
 
     public void start(Stage primaryStage) {
         try {
             window = primaryStage;
 
-            Parent root = FXMLLoader.load(getClass().getResource(EnumWindowLocation.CALENDAR_WINDOW.getLocation()));
+            Parent root = FXMLLoader.load(getClass().getResource(EnumWindowLocation.MAIN_MENU_WINDOW.getLocation()));
             window.setScene(new Scene(root));
             window.setTitle("AgroApp");
             window.show();
@@ -48,6 +49,11 @@ public class Main extends Application {
         plants = new ArrayList<>();
         plants.add(new Tree("01", new Fertilizer("00", 12f, 10.45f), "Cherry", 50));
         plants.add(new Crop("02", new Fertilizer("00", 12f, 10.45f), "Strawberry", 100));
+
+        calendar = new Calendar(new ArrayList<>());
+        calendar.addEntry(new CalendarEntry(25, 5, 2019, "Test1"));
+        calendar.addEntry(new CalendarEntry(25, 5, 2019, "Test2"));
+        calendar.addEntry(new CalendarEntry(26, 5, 2019, "Test3"));
     }
 
     @Override
@@ -69,5 +75,9 @@ public class Main extends Application {
 
     public static ArrayList<Plant> getPlants() {
         return plants;
+    }
+
+    public static Calendar getCalendar() {
+        return calendar;
     }
 }

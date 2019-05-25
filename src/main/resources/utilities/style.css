@@ -48,3 +48,8 @@
 #data-table .table-cell {
     -fx-alignment: center-right;
 }
+
+.calendar-picker {
+    -fx-font-size: 1.5em;
+    -fx-effect: null;
+}
