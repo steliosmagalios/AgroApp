@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="AgroApp1" />
         <module name="AgroAPP" />
+        <module name="AgroApp1" />
       </profile>
     </annotationProcessing>
   </component>
