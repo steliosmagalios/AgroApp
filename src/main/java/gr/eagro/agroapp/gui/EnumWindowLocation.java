@@ -11,7 +11,7 @@ public enum EnumWindowLocation {
     HYBRIDS_RESULT_WINDOW    ("/scenes/HybridsResultWindowView.fxml"),
     CALENDAR_WINDOW          ("/scenes/CalendarWindowView.fxml"),
     STATISTICS_ADD_WINDOW    ("/scenes/StatisticsAddWindowView.fxml"),
-    STATISTICS_GRAPH_WINDOW   ("/scenes/StatisticsGraphWindowView.fxml");
+    STATISTICS_GRAPH_WINDOW  ("/scenes/StatisticsGraphWindowView.fxml");
 
     private String location;
 

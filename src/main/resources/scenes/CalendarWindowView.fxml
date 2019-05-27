@@ -39,8 +39,8 @@
             <Button layoutX="445.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="regularBtn" text="Επεξεργασία" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
-      <BorderPane fx:id="calendarPane" layoutX="181.0" layoutY="232.0" prefHeight="352.0" prefWidth="372.0" />
-      <Label layoutX="218.0" layoutY="196.0" text="Επιλέξτε μια ημερομηνία">
+      <BorderPane fx:id="calendarPane" layoutX="194.0" layoutY="282.0" prefHeight="302.0" prefWidth="350.0" style="-fx-background-color: blue;" />
+      <Label layoutX="220.0" layoutY="234.0" text="Επιλέξτε μια ημερομηνία">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>

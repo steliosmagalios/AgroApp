@@ -6,6 +6,7 @@ import gr.eagro.agroapp.Plant;
 import gr.eagro.agroapp.Tree;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
@@ -35,6 +36,21 @@ public class HybridsWindow extends ApplicationWindow {
         btnSelectTree.getStyleClass().remove("radio-button");
 
         getData(Main.getPlants());
+    }
+
+    public void openResultWindow() {
+
+        Plant selectedPlant = plantList.getSelectionModel().getSelectedItem();
+
+        if(selectedPlant == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Παρακαλώ επιλέξτε ένα φυτό από τη λίστα.");
+            alert.show();
+            return;
+        }
+
+        HybridsResultWindow controller = (HybridsResultWindow) openWindow(EnumWindowLocation.HYBRIDS_RESULT_WINDOW);
+        controller.getData(selectedPlant);
     }
 
     public void treeButtonSelected() {

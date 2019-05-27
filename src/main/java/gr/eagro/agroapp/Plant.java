@@ -2,10 +2,11 @@ package gr.eagro.agroapp;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class Plant {
+public abstract class Plant implements Serializable {
     protected String id;
     protected Fertilizer fertilizer;
     protected String name;
@@ -24,12 +25,18 @@ public abstract class Plant {
         this.name = name;
         this.isHybrid = isHybrid;
 
+        this.diseases = new ArrayList<>();
+        this.hybrids = new ArrayList<>();
+
     }
     public Plant(String id, Fertilizer fertilizer, String name) {
         this.id = id;
         this.fertilizer = fertilizer;
         this.name = name;
         this.isHybrid = false;
+
+        this.diseases = new ArrayList<>();
+        this.hybrids = new ArrayList<>();
     }
 
 
@@ -103,8 +110,9 @@ public abstract class Plant {
     }
 
 
-
-
+    public ArrayList<String> getDiseases() {
+        return diseases;
+    }
 
     @Override
     public String toString() {

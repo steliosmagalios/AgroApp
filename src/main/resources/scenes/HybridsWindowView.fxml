@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.*?>
 <?import java.lang.String?>
-<Pane fx:id="backgroundPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@../utilities/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.eagro.agroapp.gui.HybridsWindow">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="backgroundPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@../utilities/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.eagro.agroapp.gui.HybridsWindow">
    <children>
       <ImageView fitHeight="85.0" fitWidth="300.0" layoutX="966.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -21,7 +27,7 @@
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="1075.0" layoutY="676.0" mnemonicParsing="false" styleClass="regularBtn" text="Καταχώρηση Δεδομένων">
+      <Button layoutX="1075.0" layoutY="676.0" mnemonicParsing="false" onAction="#openResultWindow" styleClass="regularBtn" text="Καταχώρηση Δεδομένων">
          <font>
             <Font size="14.0" />
          </font>

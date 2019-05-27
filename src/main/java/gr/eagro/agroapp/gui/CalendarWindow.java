@@ -8,16 +8,16 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.util.Callback;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class CalendarWindow extends ApplicationWindow {
 
@@ -26,6 +26,8 @@ public class CalendarWindow extends ApplicationWindow {
 
     private DatePickerSkin datePickerSkin;
     private DatePicker datePicker;
+    private Set<LocalDate> dates;
+
 
     public CalendarWindow() {
         super("Ημερολόγιο", EnumWindowLocation.CALENDAR_WINDOW);
@@ -34,9 +36,30 @@ public class CalendarWindow extends ApplicationWindow {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
+        dates = new HashSet<>();
+
+        for(CalendarEntry entry: Main.getCalendar().getEntries()) {
+            dates.add(LocalDate.of(entry.getYear(), entry.getMonth(), entry.getDay()));
+        }
 
         datePicker = new DatePicker(LocalDate.now());
         datePicker.setShowWeekNumbers(false);
+
+        final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
+            @Override
+            public DateCell call(DatePicker param) {
+                return new DateCell() {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        if(dates.contains(item))
+                            getStyleClass().add("selected-date-cell");
+                    }
+                };
+            }
+        };
+        datePicker.setDayCellFactory(dayCellFactory);
 
         datePickerSkin = new DatePickerSkin(datePicker);
         Node node = datePickerSkin.getPopupContent();

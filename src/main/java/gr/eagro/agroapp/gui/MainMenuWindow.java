@@ -25,4 +25,5 @@ public class MainMenuWindow extends ApplicationWindow {
     public void openStatisticsWindow() {
         openWindow(EnumWindowLocation.STATISTICS_ADD_WINDOW);
     }
+
 }

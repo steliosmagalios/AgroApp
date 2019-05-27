@@ -21,6 +21,7 @@ public class FertilizerWindow extends ApplicationWindow {
     @FXML private TextField input;
     @FXML private Label labelDisplayText;
     @FXML private Label labelSelectFromList;
+    @FXML private ToggleGroup categoryToggle;
 
     private List<Tree> treeItems;
     private List<Crop> cropItems;
@@ -45,16 +46,25 @@ public class FertilizerWindow extends ApplicationWindow {
 
         int quantity;
 
-        //Input validation
+        //Checks the TextField for an Integer
         try {
             quantity = Integer.parseInt(input.getText());
         }catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Παρακαλώ εισάγετε τα κατάλληλα στοιχεία.");
+            alert.setContentText(categoryToggle.getSelectedToggle() == btnSelectCrop
+                    ? "Παρακαλώ εισάγετε έναν αριθμό στρεμμάτων" : "Παρακαλώ εισάγετε έναν αριθμό δέντρων.");
             alert.show();
             return;
         }
+
+        //Checks the list to get the selected Plant
         Plant selectedPlant = plantList.getSelectionModel().getSelectedItem();
+        if(selectedPlant == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Παρακαλώ επιλέξτε κάποιο φυτό από τη λίστα.");
+            alert.show();
+            return;
+        }
 
         FertilizerResultWindow controller = ((FertilizerResultWindow) openWindow(EnumWindowLocation.FERTILIZER_RESULT_WINDOW));
         controller.getData(selectedPlant, quantity);
@@ -64,14 +74,14 @@ public class FertilizerWindow extends ApplicationWindow {
         plantList.setItems(FXCollections.observableArrayList(treeItems));
         labelDisplayText.setText("Πόσα δέντρα έχει το χωράφι;");
         labelSelectFromList.setText("Επιλέξτε ένα δέντρο:");
-        input.setText("");
+        input.clear();
     }
 
     public void cropButtonSelected() {
         plantList.setItems(FXCollections.observableArrayList(cropItems));
         labelDisplayText.setText("Πόσα στρέμματα είναι το χωράφι;");
         labelSelectFromList.setText("Επιλέξτε μία φύτρα:");
-        input.setText("");
+        input.clear();
     }
 
     public void getData(ArrayList<Plant> plantList) {

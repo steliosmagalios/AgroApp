@@ -6,9 +6,7 @@ import gr.eagro.agroapp.Plant;
 import gr.eagro.agroapp.Tree;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -20,6 +18,7 @@ public class DiseasesWindow extends ApplicationWindow {
     @FXML private RadioButton btnSelectCrop;
     @FXML private ListView<Plant> plantList;
     @FXML private Label labelSelectFromList;
+    @FXML private ToggleGroup categoryToggle;
 
     private ArrayList<Tree> treeItems;
     private ArrayList<Crop> cropItems;
@@ -48,7 +47,17 @@ public class DiseasesWindow extends ApplicationWindow {
     }
 
     public void openResultWindow() {
-        openWindow(EnumWindowLocation.DISEASES_RESULT_WINDOW);
+
+        Plant selectedPlant = plantList.getSelectionModel().getSelectedItem();
+        if(selectedPlant == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Παρακαλώ επιλέξτε ένα φυτό από τη λίστα.");
+            alert.show();
+            return;
+        }
+
+        DiseasesResultWindow controller = (DiseasesResultWindow) openWindow(EnumWindowLocation.DISEASES_RESULT_WINDOW);
+        controller.getData(selectedPlant);
     }
 
     public void getData(ArrayList<Plant> plantList) {

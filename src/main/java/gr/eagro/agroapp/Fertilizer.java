@@ -1,10 +1,11 @@
 package gr.eagro.agroapp;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Scanner;
 
-public class Fertilizer {
+public class Fertilizer implements Serializable {
     private String id;
     private double quantity;
     private double cost;
@@ -39,23 +40,33 @@ public class Fertilizer {
         return 0;
     }
 
-    public File getInfo(){
+//    public File getInfo(){
+//
+//        File f = new File("./info/fertilizer", this.id + ".txt");
+//
+//        // check if the file exists
+//        try {
+//            Scanner scan = new Scanner(f);
+//
+//            String line = scan.nextLine();
+//            if(line.isEmpty()){
+//                return null;
+//            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return f;
+//    }
 
-        File f = new File("./info/fertilizer/" + this.id + ".txt" );
+    public InputStream getInfo() {
+//        URL resource = Main.class.getClassLoader().getResource();
 
-        // check if the file exists
-        try {
-            Scanner scan = new Scanner(f);
+        InputStream stream = Main.class.getClassLoader().getResourceAsStream("./info/fertilizer/" + id + ".txt");
 
-            String line = scan.nextLine();
-            if(line.isEmpty()){
-                return null;
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+//        System.out.println(resource);
 
-        return f;
+        return stream;
     }
 
 
