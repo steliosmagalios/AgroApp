@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<Pane fx:id="backgroundPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@../utilities/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.eagro.agroapp.gui.CalendarWindow">
+<Pane fx:id="backgroundPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@../utilities/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.eagro.agroapp.gui.CalendarWindow">
    <children>
       <ImageView fitHeight="85.0" fitWidth="300.0" layoutX="966.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -34,13 +29,13 @@
       <ListView fx:id="dayEntries" layoutX="616.0" layoutY="134.0" prefHeight="450.0" prefWidth="500.0" />
       <HBox layoutX="616.0" layoutY="587.0" maxWidth="1.7976931348623157E308" prefHeight="31.0" prefWidth="500.0" spacing="5.0">
          <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="regularBtn" text="Προσθήκη" HBox.hgrow="ALWAYS" />
-            <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="regularBtn" text="Διαγραφή" HBox.hgrow="ALWAYS" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#createNewEntry" styleClass="regularBtn" text="Προσθήκη" HBox.hgrow="ALWAYS" />
+            <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteSelectedItem" styleClass="regularBtn" text="Διαγραφή" HBox.hgrow="ALWAYS" />
             <Button layoutX="445.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="regularBtn" text="Επεξεργασία" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
-      <BorderPane fx:id="calendarPane" layoutX="181.0" layoutY="232.0" prefHeight="352.0" prefWidth="372.0" />
-      <Label layoutX="218.0" layoutY="196.0" text="Επιλέξτε μια ημερομηνία">
+      <BorderPane fx:id="calendarPane" layoutX="218.0" layoutY="285.0" prefHeight="290.0" prefWidth="300.0" style="-fx-background-color: blue;" />
+      <Label layoutX="216.0" layoutY="232.0" text="Επιλέξτε μια ημερομηνία:">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>

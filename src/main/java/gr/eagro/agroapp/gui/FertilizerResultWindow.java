@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
@@ -18,8 +20,7 @@ public class FertilizerResultWindow extends ApplicationWindow {
 
     private int kgToDisplay;
     private double priceToDisplay;
-    private File fileToDisplay;
-
+    private Plant plant;
 
     public FertilizerResultWindow() {
         super("Αποτελέσματα", EnumWindowLocation.FERTILIZER_RESULT_WINDOW);
@@ -29,12 +30,15 @@ public class FertilizerResultWindow extends ApplicationWindow {
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
 
+
+
         fertilizerInfoArea.setWrapText(true);
         fertilizerInfoArea.setEditable(false);
 
     }
 
-    public void getData(Plant plant, int quantity) {
+    public void getData(Plant plant) {
+        this.plant = plant;
         initializeImportedComponents();
     }
 
@@ -43,5 +47,26 @@ public class FertilizerResultWindow extends ApplicationWindow {
         labelKg.setText(kgToDisplay + " Kg");
         labelPrice.setText(df.format(priceToDisplay) + "€");
 
+        StringBuilder builder = new StringBuilder();
+        try {
+//            File f = plant.getFertilizer().getInfo();
+            InputStream f = plant.getFertilizer().getInfo();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(f));
+//            BufferedReader reader = new BufferedReader(new FileReader(f));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                builder.append(line);
+            }
+            reader.close();
+            f.close();
+
+            fertilizerInfoArea.setText(builder.toString());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            System.out.println("Null");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

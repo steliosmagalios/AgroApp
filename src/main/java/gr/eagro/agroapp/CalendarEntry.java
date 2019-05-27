@@ -1,6 +1,8 @@
 package gr.eagro.agroapp;
 
-public class CalendarEntry {
+import java.io.Serializable;
+
+public class CalendarEntry implements Serializable {
 	private int day;
 	private int month;
 	private int year;
@@ -44,5 +46,10 @@ public class CalendarEntry {
 
 	public void setDisplayText(String displayText) {
 		this.displayText = displayText;
+	}
+
+	@Override
+	public String toString() {
+		return this.getDisplayText();
 	}
 }

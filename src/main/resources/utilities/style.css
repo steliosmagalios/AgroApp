@@ -50,6 +50,30 @@
 }
 
 .calendar-picker {
-    -fx-font-size: 1.5em;
+    -fx-font-size: 18px;
     -fx-effect: null;
+}
+
+.list-view {
+    -fx-font-size: 18px;
+}
+
+.selected-date-cell {
+    -fx-background-color: #14e526;
+}
+
+.selected-date-cell:hover {
+    -fx-background-color: #0096C9;
+}
+
+.selected-date-cell.selected {
+    -fx-background-color: #0096C9;
+}
+
+.justify-text {
+    -fx-font-alignment: center;
+}
+
+.text-area {
+    -fx-font-size: 18px;
 }

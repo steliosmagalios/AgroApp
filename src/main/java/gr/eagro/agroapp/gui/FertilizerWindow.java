@@ -21,6 +21,7 @@ public class FertilizerWindow extends ApplicationWindow {
     @FXML private TextField input;
     @FXML private Label labelDisplayText;
     @FXML private Label labelSelectFromList;
+    @FXML private ToggleGroup categoryToggle;
 
     private List<Tree> treeItems;
     private List<Crop> cropItems;
@@ -38,44 +39,7 @@ public class FertilizerWindow extends ApplicationWindow {
         treeItems = new ArrayList<>();
         cropItems = new ArrayList<>();
 
-        getData(Main.getPlants());
-    }
-
-    public void openResultWindow() {
-
-        int quantity;
-
-        //Input validation
-        try {
-            quantity = Integer.parseInt(input.getText());
-        }catch(Exception e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Παρακαλώ εισάγετε τα κατάλληλα στοιχεία.");
-            alert.show();
-            return;
-        }
-        Plant selectedPlant = plantList.getSelectionModel().getSelectedItem();
-
-        FertilizerResultWindow controller = ((FertilizerResultWindow) openWindow(EnumWindowLocation.FERTILIZER_RESULT_WINDOW));
-        controller.getData(selectedPlant, quantity);
-    }
-
-    public void treeButtonSelected() {
-        plantList.setItems(FXCollections.observableArrayList(treeItems));
-        labelDisplayText.setText("Πόσα δέντρα έχει το χωράφι;");
-        labelSelectFromList.setText("Επιλέξτε ένα δέντρο:");
-        input.setText("");
-    }
-
-    public void cropButtonSelected() {
-        plantList.setItems(FXCollections.observableArrayList(cropItems));
-        labelDisplayText.setText("Πόσα στρέμματα είναι το χωράφι;");
-        labelSelectFromList.setText("Επιλέξτε μία φύτρα:");
-        input.setText("");
-    }
-
-    public void getData(ArrayList<Plant> plantList) {
-        plantList.forEach(plant -> {
+        Main.getPlants().forEach(plant -> {
             if(plant instanceof Tree)
                 treeItems.add(((Tree) plant));
             else
@@ -83,5 +47,47 @@ public class FertilizerWindow extends ApplicationWindow {
         });
 
         treeButtonSelected();
+    }
+
+    public void openResultWindow() {
+
+        int quantity;
+
+        //Checks the TextField for an Integer
+        try {
+            quantity = Integer.parseInt(input.getText());
+        }catch(Exception e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText(categoryToggle.getSelectedToggle() == btnSelectTree
+                    ? WarningIndex.WARNING_INSERT_TREE : WarningIndex.WARNING_INSERT_CROP);
+            alert.show();
+            return;
+        }
+
+        //Checks the list to get the selected Plant
+        Plant selectedPlant = plantList.getSelectionModel().getSelectedItem();
+        if(selectedPlant == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText(WarningIndex.WARNING_SELECT_PLANT);
+            alert.show();
+            return;
+        }
+
+        FertilizerResultWindow controller = ((FertilizerResultWindow) openWindow(EnumWindowLocation.FERTILIZER_RESULT_WINDOW));
+        controller.getData(selectedPlant);
+    }
+
+    public void treeButtonSelected() {
+        plantList.setItems(FXCollections.observableArrayList(treeItems));
+        labelDisplayText.setText("Πόσα δέντρα έχει το χωράφι;");
+        labelSelectFromList.setText("Επιλέξτε ένα δέντρο:");
+        input.clear();
+    }
+
+    public void cropButtonSelected() {
+        plantList.setItems(FXCollections.observableArrayList(cropItems));
+        labelDisplayText.setText("Πόσα στρέμματα είναι το χωράφι;");
+        labelSelectFromList.setText("Επιλέξτε μία φύτρα:");
+        input.clear();
     }
 }

@@ -44,7 +44,7 @@ public abstract class ApplicationWindow implements Initializable {
 
     public ApplicationWindow openWindow(EnumWindowLocation window) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(window.getLocation()));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource(window.getLocation()));
             Parent root = loader.load();
             Main.getWindow().setScene(new Scene(root));
             return loader.getController();

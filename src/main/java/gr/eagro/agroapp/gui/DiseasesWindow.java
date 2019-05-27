@@ -6,6 +6,7 @@ import gr.eagro.agroapp.Plant;
 import gr.eagro.agroapp.Tree;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
@@ -48,7 +49,16 @@ public class DiseasesWindow extends ApplicationWindow {
     }
 
     public void openResultWindow() {
-        openWindow(EnumWindowLocation.DISEASES_RESULT_WINDOW);
+        Plant selectedPlant = plantList.getSelectionModel().getSelectedItem();
+        if(selectedPlant == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText(WarningIndex.WARNING_SELECT_PLANT);
+            alert.show();
+            return;
+        }
+
+        DiseasesResultWindow controller = (DiseasesResultWindow) openWindow(EnumWindowLocation.DISEASES_RESULT_WINDOW);
+        controller.getData(selectedPlant);
     }
 
     public void getData(ArrayList<Plant> plantList) {
