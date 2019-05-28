@@ -1,11 +1,13 @@
 package gr.eagro.agroapp;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class Plant {
+public abstract class Plant  implements java.io.Serializable {
     protected String id;
     protected Fertilizer fertilizer;
     protected String name;
@@ -47,29 +49,25 @@ public abstract class Plant {
         return this.hybrids.size()>0 ;
     }
 
-   public File getInfo(String key, String resultId){
+   public InputStream getInfo(String key, String resultId){
         File f;
         if(key.toLowerCase().equals("hybrids")){
-            f = new File("./info/hybrids/" + this.id + "/" + resultId + ".txt");
+            f = new File("resources/info/hybrids/" + this.id + "/" + resultId + ".txt");
         }else if (key.toLowerCase().equals("diseases")){
-            f = new File("./info/diseases/" + this.id + "/" + resultId + ".txt");
+            f = new File("resources/info/diseases/" + this.id + "/" + resultId + ".txt");
         }else f=null;
 
+
         // check if the file exists
-           try {
-               Scanner scan = new Scanner(f);
-
-               String line = scan.nextLine();
-
-               if(line.isEmpty()){
-                   return null;
-               }
-
-           } catch (FileNotFoundException e) {
-               e.printStackTrace();
-           }
-
-        return f;
+        if(f.exists()){
+            try {
+                 InputStream fInputStream = new FileInputStream(f);
+                 return fInputStream;
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
    }
 
 

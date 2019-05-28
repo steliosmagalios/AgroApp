@@ -1,13 +1,17 @@
 package gr.eagro.agroapp;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Scanner;
 
-public class Fertilizer {
+public class Fertilizer  implements java.io.Serializable{
     private String id;
     private double quantity;
     private double cost;
+
+
 
     public Fertilizer(String id, double quantity, double cost) {
         this.id = id;
@@ -39,23 +43,23 @@ public class Fertilizer {
         return 0;
     }
 
-    public File getInfo(){
+    public InputStream getInfo(){
 
-        File f = new File("./info/fertilizer/" + this.id + ".txt" );
+        File f = new File("resources/info/fertilizer/" + this.id + ".txt" );
 
         // check if the file exists
-        try {
-            Scanner scan = new Scanner(f);
 
-            String line = scan.nextLine();
-            if(line.isEmpty()){
-                return null;
+            if(f.exists()){
+                try {
+                    InputStream fInputStream = new FileInputStream(f);
+                    return fInputStream;
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+            return null;
 
-        return f;
     }
 
 

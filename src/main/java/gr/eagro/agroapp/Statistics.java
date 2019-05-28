@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
-public class Statistics {
+public class Statistics  implements java.io.Serializable{
 
 
     HashMap<Integer, Double> hmap_income;
