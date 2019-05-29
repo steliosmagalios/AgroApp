@@ -27,38 +27,25 @@ public class Fertilizer  implements java.io.Serializable{
     }
 
     public double calculateQuantity(Plant aPlant) {
-        File f = new File("./info/plants/fertilizer/" + aPlant.getId() + ".txt");
+        InputStream fInputStream;
+        fInputStream  = getClass().getResourceAsStream("/info/plants/fertilizer/" + aPlant.getId() + ".txt");
 
-        try {
-            Scanner scan = new Scanner(f);
 
-            String q = scan.next();
-            if (!(q.isEmpty())) {
-                return this.quantity * Double.parseDouble(q);
-            } else return 0;
+        Scanner s = new java.util.Scanner(fInputStream).useDelimiter("\\A");
+        String q = s.next();
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return 0;
+        if (!(q.isEmpty())) {
+            return this.quantity * Double.parseDouble(q);
+        } else return 0;
+
     }
 
     public InputStream getInfo(){
+        InputStream fInputStream;
 
-        File f = new File("resources/info/fertilizer/" + this.id + ".txt" );
+        fInputStream  = getClass().getResourceAsStream("/info/fertilizer/" + this.id + ".txt" );
 
-        // check if the file exists
-
-            if(f.exists()){
-                try {
-                    InputStream fInputStream = new FileInputStream(f);
-                    return fInputStream;
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-
-            }
-            return null;
+        return fInputStream;
 
     }
 
