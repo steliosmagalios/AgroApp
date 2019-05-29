@@ -44,21 +44,11 @@ public class Fertilizer  implements java.io.Serializable{
     }
 
     public InputStream getInfo(){
+        InputStream fInputStream;
 
-        File f = new File("resources/info/fertilizer/" + this.id + ".txt" );
+        fInputStream  = getClass().getResourceAsStream("/info/fertilizer/" + this.id + ".txt" );
 
-        // check if the file exists
-
-            if(f.exists()){
-                try {
-                    InputStream fInputStream = new FileInputStream(f);
-                    return fInputStream;
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-
-            }
-            return null;
+        return fInputStream;
 
     }
 
