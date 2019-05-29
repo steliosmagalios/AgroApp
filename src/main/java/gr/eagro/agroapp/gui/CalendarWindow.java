@@ -61,6 +61,7 @@ public class CalendarWindow extends ApplicationWindow {
                 };
             }
         };
+        // TODO: 29-May-19 Bind property to update automagically
         datePicker.setDayCellFactory(dayCellFactory);
 
         DatePickerSkin datePickerSkin = new DatePickerSkin(datePicker);
@@ -92,7 +93,7 @@ public class CalendarWindow extends ApplicationWindow {
 
         if(entryToRemove == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText(WarningIndex.WARNING_SELECT_ENTRY);
+            alert.setContentText(ApplicationIndexes.WARNING_SELECT_ENTRY);
             alert.show();
             return;
         }
@@ -110,26 +111,44 @@ public class CalendarWindow extends ApplicationWindow {
     }
 
     public void createNewEntry() {
+        openEntryWindow("Πρασθήκη καταχώρησης", datePicker.getValue(), null);
+    }
 
+    public static void fetchEntry(CalendarEntry entry, boolean isNewEntry) {
+        if(isNewEntry)
+            calendar.getEntries().add(entry);
+        dates.add(LocalDate.of(entry.getYear(), entry.getMonth(), entry.getDay()));
+
+    }
+
+    public void editEntry() {
+        CalendarEntry entry = dayEntries.getSelectionModel().getSelectedItem();
+
+        if(entry == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText(ApplicationIndexes.WARNING_SELECT_ENTRY);
+            alert.show();
+            return;
+        }
+
+        openEntryWindow("Επεξεργασία καταχώρησης", LocalDate.of(entry.getYear(), entry.getMonth(), entry.getDay()), entry);
+    }
+
+    private void openEntryWindow(String title, LocalDate date, CalendarEntry entry) {
         try {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource(EnumWindowLocation.ENTRY_CREATION_WINDOW.getLocation()));
             Parent root = loader.load();
 
             EntryCreationWindow controller = loader.getController();
-            controller.getData(stage, datePicker.getValue());
+            controller.getData(stage, date, entry);
 
+            stage.setTitle(title);
             stage.setScene(new Scene(root));
             stage.setResizable(false);
             stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-    }
-
-    public static void fetchEntry(CalendarEntry entry) {
-        calendar.getEntries().add(entry);
-        dates.add(LocalDate.of(entry.getYear(), entry.getMonth(), entry.getDay()));
     }
 }

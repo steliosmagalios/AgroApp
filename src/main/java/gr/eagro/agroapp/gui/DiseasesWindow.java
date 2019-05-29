@@ -52,7 +52,7 @@ public class DiseasesWindow extends ApplicationWindow {
         Plant selectedPlant = plantList.getSelectionModel().getSelectedItem();
         if(selectedPlant == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText(WarningIndex.WARNING_SELECT_PLANT);
+            alert.setContentText(ApplicationIndexes.WARNING_SELECT_PLANT);
             alert.show();
             return;
         }

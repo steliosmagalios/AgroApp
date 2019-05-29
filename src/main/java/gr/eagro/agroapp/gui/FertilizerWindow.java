@@ -59,7 +59,7 @@ public class FertilizerWindow extends ApplicationWindow {
         }catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText(categoryToggle.getSelectedToggle() == btnSelectTree
-                    ? WarningIndex.WARNING_INSERT_TREE : WarningIndex.WARNING_INSERT_CROP);
+                    ? ApplicationIndexes.WARNING_INSERT_TREE : ApplicationIndexes.WARNING_INSERT_CROP);
             alert.show();
             return;
         }
@@ -68,7 +68,7 @@ public class FertilizerWindow extends ApplicationWindow {
         Plant selectedPlant = plantList.getSelectionModel().getSelectedItem();
         if(selectedPlant == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText(WarningIndex.WARNING_SELECT_PLANT);
+            alert.setContentText(ApplicationIndexes.WARNING_SELECT_PLANT);
             alert.show();
             return;
         }

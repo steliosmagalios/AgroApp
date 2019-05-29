@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<Pane fx:id="backgroundPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@../utilities/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.eagro.agroapp.gui.CalendarWindow">
+<Pane fx:id="backgroundPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@../utilities/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.eagro.agroapp.gui.CalendarWindow">
    <children>
       <ImageView fitHeight="85.0" fitWidth="300.0" layoutX="966.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -31,7 +31,7 @@
          <children>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#createNewEntry" styleClass="regularBtn" text="Προσθήκη" HBox.hgrow="ALWAYS" />
             <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteSelectedItem" styleClass="regularBtn" text="Διαγραφή" HBox.hgrow="ALWAYS" />
-            <Button layoutX="445.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="regularBtn" text="Επεξεργασία" HBox.hgrow="ALWAYS" />
+            <Button layoutX="445.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#editEntry" styleClass="regularBtn" text="Επεξεργασία" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
       <BorderPane fx:id="calendarPane" layoutX="218.0" layoutY="285.0" prefHeight="290.0" prefWidth="300.0" style="-fx-background-color: blue;" />

@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
@@ -44,15 +45,15 @@ public class FertilizerResultWindow extends ApplicationWindow {
 
     private void initializeImportedComponents() {
         DecimalFormat df = new DecimalFormat("#.##");
-        labelKg.setText(kgToDisplay + " Kg");
-        labelPrice.setText(df.format(priceToDisplay) + "€");
+        labelKg.setText(plant.getFertilizer().calculateQuantity(plant) + " Kg");
+        labelPrice.setText(df.format(plant.getFertilizer().calculateCost(plant.getFertilizer().calculateQuantity(plant))) + "€");
 
         StringBuilder builder = new StringBuilder();
         try {
 //            File f = plant.getFertilizer().getInfo();
             InputStream f = plant.getFertilizer().getInfo();
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(f));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(plant.getFertilizer().getInfo(), StandardCharsets.UTF_8));
 //            BufferedReader reader = new BufferedReader(new FileReader(f));
             String line;
             while ((line = reader.readLine()) != null) {

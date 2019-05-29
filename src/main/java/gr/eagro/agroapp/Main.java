@@ -56,7 +56,7 @@ public class Main extends Application {
     private void manualInit() {
         plants = new ArrayList<>();
         plants.add(new Tree("treecherry", new Fertilizer("treecherryfert", 12f, 10.45f), "Cherry", 50));
-        plants.add(new Crop("02", new Fertilizer("00", 12f, 10.45f), "Strawberry", 100));
+        plants.add(new Crop("cropcuccumber", new Fertilizer("cropcuccumberfert", 12f, 10.45f), "Cuccumber", 100));
 
         plants.forEach(plant -> {
             for(int i=0;i<10;i++)
@@ -74,30 +74,32 @@ public class Main extends Application {
 
         Main.getStatistics().getIncomeGraphData().put(2018+1,(200+23.0));
         Main.getStatistics().getIncomeGraphData().put(2018+2,(200+14.0));
-        Main.getStatistics().getIncomeGraphData().put(2018+3,(200+15.0));
+        Main.getStatistics().getIncomeGraphData().put(2018+8,(200+45.0));
         Main.getStatistics().getIncomeGraphData().put(2018+4,(200+24.0));
         Main.getStatistics().getIncomeGraphData().put(2018+5,(200+34.0));
         Main.getStatistics().getIncomeGraphData().put(2018+6,(200+36.0));
+
+        Main.getStatistics().getIncomeGraphData().put(2018+3,(200+15.0));
         Main.getStatistics().getIncomeGraphData().put(2018+7,(200+22.0));
-        Main.getStatistics().getIncomeGraphData().put(2018+8,(200+45.0));
+
         Main.getStatistics().getIncomeGraphData().put(2018+9,(200+43.0));
         Main.getStatistics().getIncomeGraphData().put(2018+10,(200+ 17.0));
         Main.getStatistics().getIncomeGraphData().put(2018+11,(200+ 29.0));
         Main.getStatistics().getIncomeGraphData().put(2018+12,(200+ 25.0));
 
 
-        Main.getStatistics().getQuantitygraphData().put(2018+1,(200+23.0));
-        Main.getStatistics().getQuantitygraphData().put(2018+2,(200+14.0));
-        Main.getStatistics().getQuantitygraphData().put(2018+3,(200+15.0));
-        Main.getStatistics().getQuantitygraphData().put(2018+4,(200+24.0));
-        Main.getStatistics().getQuantitygraphData().put(2018+5,(200+34.0));
-        Main.getStatistics().getQuantitygraphData().put(2018+6,(200+36.0));
-        Main.getStatistics().getQuantitygraphData().put(2018+7,(200+22.0));
-        Main.getStatistics().getQuantitygraphData().put(2018+8,(200+45.0));
-        Main.getStatistics().getQuantitygraphData().put(2018+9,(200+43.0));
-        Main.getStatistics().getQuantitygraphData().put(2018+10,(200+ 17.0));
-        Main.getStatistics().getQuantitygraphData().put(2018+11,(200+ 29.0));
-        Main.getStatistics().getQuantitygraphData().put(2018+12,(200+ 25.0));
+        Main.getStatistics().getQuantityGraphData().put(2018+1,(200+23.0));
+        Main.getStatistics().getQuantityGraphData().put(2018+2,(200+14.0));
+        Main.getStatistics().getQuantityGraphData().put(2018+3,(200+15.0));
+        Main.getStatistics().getQuantityGraphData().put(2018+4,(200+24.0));
+        Main.getStatistics().getQuantityGraphData().put(2018+5,(200+34.0));
+        Main.getStatistics().getQuantityGraphData().put(2018+6,(200+36.0));
+        Main.getStatistics().getQuantityGraphData().put(2018+7,(200+22.0));
+        Main.getStatistics().getQuantityGraphData().put(2018+8,(200+45.0));
+        Main.getStatistics().getQuantityGraphData().put(2018+9,(200+43.0));
+        Main.getStatistics().getQuantityGraphData().put(2018+10,(200+ 17.0));
+        Main.getStatistics().getQuantityGraphData().put(2018+11,(200+ 29.0));
+        Main.getStatistics().getQuantityGraphData().put(2018+12,(200+ 25.0));
 
     }
 
@@ -108,7 +110,7 @@ public class Main extends Application {
         navigation.clear();
         plants.clear();
         calendar.getEntries().clear();
-        statistics.getQuantitygraphData().clear();
+        statistics.getQuantityGraphData().clear();
         statistics.getIncomeGraphData().clear();
     }
 

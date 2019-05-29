@@ -44,7 +44,7 @@ public class HybridsWindow extends ApplicationWindow {
 
         if(selectedPlant == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText(WarningIndex.WARNING_SELECT_PLANT);
+            alert.setContentText(ApplicationIndexes.WARNING_SELECT_PLANT);
             alert.show();
             return;
         }

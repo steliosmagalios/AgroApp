@@ -28,7 +28,7 @@ public class StatisticsGraphWindow extends ApplicationWindow {
         Statistics statistics = Main.getStatistics();
 
         XYChart.Series<Number, Number> productionSeries = new XYChart.Series<>();
-        statistics.getQuantitygraphData().forEach((year, quantity) ->
+        statistics.getQuantityGraphData().forEach((year, quantity) ->
                 productionSeries.getData().add(new XYChart.Data<>(year, quantity))
         );
         productionChart.getData().add(productionSeries);

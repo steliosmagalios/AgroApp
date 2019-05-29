@@ -3,7 +3,7 @@ package gr.eagro.agroapp.gui;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class TableEntry {
+public class TableEntry implements Comparable<TableEntry> {
     private SimpleIntegerProperty year;
     private SimpleDoubleProperty income;
     private SimpleDoubleProperty quantity;
@@ -48,5 +48,15 @@ public class TableEntry {
 
     public void setQuantity(double quantity) {
         this.quantity.set(quantity);
+    }
+
+    @Override
+    public int compareTo(TableEntry o) {
+        if(this.getYear() > o.getYear())
+            return 1;
+        else if(this.getYear() < o.getYear())
+            return -1;
+        else
+            return 0;
     }
 }
