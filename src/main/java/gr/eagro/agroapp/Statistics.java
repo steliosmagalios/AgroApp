@@ -7,17 +7,17 @@ import java.util.Set;
 public class Statistics  implements java.io.Serializable{
 
 
-    HashMap<Integer, Double> hmap_income;
-    HashMap<Integer, Double> hmap_quantity;
+    HashMap<Integer, Double> incomeGraphData;
+    HashMap<Integer, Double> productionGraphData;
 
     public Statistics() {
-        hmap_income = new HashMap<Integer, Double>();
-        hmap_quantity = new HashMap<Integer, Double>();
+        incomeGraphData = new HashMap<Integer, Double>();
+        productionGraphData = new HashMap<Integer, Double>();
     }
 
     public double calculateAverageIncome() {
-        ArrayList<Double> values = ((ArrayList<Double>) hmap_income.values());
-        Set keys =  hmap_income.keySet();
+        ArrayList<Double> values = ((ArrayList<Double>) incomeGraphData.values());
+        Set keys =  productionGraphData.keySet();
 
         double total = 0;
 
@@ -29,8 +29,8 @@ public class Statistics  implements java.io.Serializable{
     }
 
     public double calculateAverageQuantity() {
-        ArrayList<Double> values = ((ArrayList<Double>) hmap_quantity.values());
-        Set keys =  hmap_income.keySet();
+        ArrayList<Double> values = ((ArrayList<Double>) productionGraphData.values());
+        Set keys =  incomeGraphData.keySet();
 
         double total = 0;
 
@@ -42,16 +42,23 @@ public class Statistics  implements java.io.Serializable{
     }
 
     public double calculateEstimatedGrowth() {
-        Set<Integer> yearSet = hmap_quantity.keySet();
+        Set<Integer> yearSet = productionGraphData.keySet();
 
         int last = 0;
         for (Integer item : yearSet) {
             last = item;
         }
 
-        double lastValue = hmap_quantity.get(last);
+        double lastValue = productionGraphData.get(last);
 
         return lastValue + calculateAverageQuantity();
     }
 
+    public HashMap<Integer, Double> getIncomeGraphData() {
+        return incomeGraphData;
+    }
+
+    public HashMap<Integer, Double> getProductionGraphData() {
+        return productionGraphData;
+    }
 }
