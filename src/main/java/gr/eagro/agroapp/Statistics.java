@@ -1,19 +1,18 @@
 package gr.eagro.agroapp;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
-public class Statistics implements Serializable {
+public class Statistics  implements java.io.Serializable{
 
 
-    private HashMap<Integer, Double> hmap_income;
-    private HashMap<Integer, Double> hmap_quantity;
+    HashMap<Integer, Double> hmap_income;
+    HashMap<Integer, Double> hmap_quantity;
 
     public Statistics() {
-        hmap_income = new HashMap<>();
-        hmap_quantity = new HashMap<>();
+        hmap_income = new HashMap<Integer, Double>();
+        hmap_quantity = new HashMap<Integer, Double>();
     }
 
     public double calculateAverageIncome() {
@@ -55,11 +54,4 @@ public class Statistics implements Serializable {
         return lastValue + calculateAverageQuantity();
     }
 
-    public HashMap<Integer, Double> getIncomeGraphData() {
-        return hmap_income;
-    }
-
-    public HashMap<Integer, Double> getQuantitygraphData() {
-        return hmap_quantity;
-    }
 }

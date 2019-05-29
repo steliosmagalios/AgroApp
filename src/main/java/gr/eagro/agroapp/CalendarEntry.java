@@ -1,8 +1,7 @@
 package gr.eagro.agroapp;
 
-import java.io.Serializable;
 
-public class CalendarEntry implements Serializable {
+public class CalendarEntry implements java.io.Serializable{
 	private int day;
 	private int month;
 	private int year;
