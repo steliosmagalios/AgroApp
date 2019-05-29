@@ -1,7 +1,9 @@
 package gr.eagro.agroapp;
 
 
-public class CalendarEntry implements java.io.Serializable{
+import java.time.LocalDate;
+
+public class CalendarEntry implements java.io.Serializable ,  Comparable<CalendarEntry> {
 	private int day;
 	private int month;
 	private int year;
@@ -51,4 +53,39 @@ public class CalendarEntry implements java.io.Serializable{
 	public String toString() {
 		return this.getDisplayText();
 	}
+
+	@Override
+	public int compareTo(CalendarEntry o) {
+
+		if(this.getYear()>o.getYear()){
+			return 1;
+		}else if (this.getYear()<o.getYear()){
+			return -1;
+		}else {
+			if (this.getMonth() > o.getMonth()) {
+				return 1;
+			} else if (this.getMonth() < o.getMonth()) {
+				return -1;
+			} else {
+				if (this.getDay() > o.getDay()) {
+					return 1;
+				} else if (this.getDay() < o.getDay()) {
+					return -1;
+				} else return 0;
+			}
+		}
+	}
+
+	public LocalDate getDateAsLocalDate(){
+		return LocalDate.of(this.year, this.month, this.day);
+
+	}
+
+	public void setDateFromLocalDate(LocalDate date){
+		this.day= date.getDayOfMonth();
+		this.month= date.getMonthValue();
+		this.year= date.getYear();
+
+	}
+
 }
