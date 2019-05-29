@@ -11,8 +11,8 @@ public abstract class Plant  implements java.io.Serializable {
     protected String id;
     protected Fertilizer fertilizer;
     protected String name;
-    protected ArrayList<Plant> hybrids ;
-    protected ArrayList<String> diseases;
+    protected ArrayList<Plant> hybrids = new ArrayList<>() ;
+    protected ArrayList<String> diseases = new ArrayList<>();
     protected boolean isHybrid;
 
 
@@ -28,10 +28,7 @@ public abstract class Plant  implements java.io.Serializable {
 
     }
     public Plant(String id, Fertilizer fertilizer, String name) {
-        this.id = id;
-        this.fertilizer = fertilizer;
-        this.name = name;
-        this.isHybrid = false;
+       this(id,fertilizer,name,false);
     }
 
 
@@ -50,24 +47,16 @@ public abstract class Plant  implements java.io.Serializable {
     }
 
    public InputStream getInfo(String key, String resultId){
-        File f;
+        InputStream fInputStream;
         if(key.toLowerCase().equals("hybrids")){
-            f = new File("resources/info/hybrids/" + this.id + "/" + resultId + ".txt");
+            fInputStream  = getClass().getResourceAsStream("/info/hybrids/" + this.id + "/" + resultId + ".txt");
         }else if (key.toLowerCase().equals("diseases")){
-            f = new File("resources/info/diseases/" + this.id + "/" + resultId + ".txt");
-        }else f=null;
+            fInputStream  = getClass().getResourceAsStream("/info/diseases/" + this.id + "/" + resultId + ".txt");
+        }else fInputStream=null;
 
 
-        // check if the file exists
-        if(f.exists()){
-            try {
-                 InputStream fInputStream = new FileInputStream(f);
-                 return fInputStream;
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
+
+        return fInputStream;
    }
 
 
@@ -101,8 +90,9 @@ public abstract class Plant  implements java.io.Serializable {
     }
 
 
-
-
+    public ArrayList<String> getDiseases() {
+        return diseases;
+    }
 
     @Override
     public String toString() {
