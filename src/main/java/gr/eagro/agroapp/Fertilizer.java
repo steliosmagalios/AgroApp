@@ -1,9 +1,7 @@
 package gr.eagro.agroapp;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Fertilizer  implements java.io.Serializable{
@@ -31,7 +29,7 @@ public class Fertilizer  implements java.io.Serializable{
         fInputStream  = getClass().getResourceAsStream("/info/plants/fertilizer/" + aPlant.getId() + ".txt");
 
 
-        Scanner s = new java.util.Scanner(fInputStream).useDelimiter("\\A");
+        Scanner s = new Scanner(new InputStreamReader(fInputStream, StandardCharsets.UTF_8));
         String q = s.next();
 
         if (!(q.isEmpty())) {
