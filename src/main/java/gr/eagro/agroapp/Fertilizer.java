@@ -9,7 +9,12 @@ public class Fertilizer  implements java.io.Serializable{
     private double quantity;
     private double cost;
 
-
+    /**
+     *
+     * @param id
+     * @param quantity
+     * @param cost
+     */
 
     public Fertilizer(String id, double quantity, double cost) {
         this.id = id;
@@ -18,12 +23,22 @@ public class Fertilizer  implements java.io.Serializable{
 
     }
 
+    /**
+     *
+     * @param fertilizerQuantity
+     * @return
+     */
     public double calculateCost(double fertilizerQuantity) {
         double totalcost;
         totalcost = fertilizerQuantity * this.cost;
         return totalcost;
     }
 
+    /**
+     *
+     * @param aPlant
+     * @return
+     */
     public double calculateQuantity(Plant aPlant) {
         InputStream fInputStream;
         fInputStream  = getClass().getResourceAsStream("/info/plants/fertilizer/" + aPlant.getId() + ".txt");
@@ -38,6 +53,10 @@ public class Fertilizer  implements java.io.Serializable{
 
     }
 
+    /**
+     *
+     * @return
+     */
     public InputStream getInfo(){
         InputStream fInputStream;
 

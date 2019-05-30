@@ -10,11 +10,16 @@ public class Statistics  implements java.io.Serializable{
     HashMap<Integer, Double> incomeGraphData;
     HashMap<Integer, Double> productionGraphData;
 
+
     public Statistics() {
         incomeGraphData = new HashMap<Integer, Double>();
         productionGraphData = new HashMap<Integer, Double>();
     }
 
+    /**
+     *
+     * @return
+     */
     public double calculateAverageIncome() {
         ArrayList<Double> values = ((ArrayList<Double>) incomeGraphData.values());
         Set keys =  productionGraphData.keySet();
@@ -28,6 +33,10 @@ public class Statistics  implements java.io.Serializable{
         return total/keys.size();
     }
 
+    /**
+     *
+     * @return
+     */
     public double calculateAverageQuantity() {
         ArrayList<Double> values = ((ArrayList<Double>) productionGraphData.values());
         Set keys =  incomeGraphData.keySet();
@@ -41,6 +50,10 @@ public class Statistics  implements java.io.Serializable{
         return total/keys.size();
     }
 
+    /**
+     *
+     * @return
+     */
     public double calculateEstimatedGrowth() {
         Set<Integer> yearSet = productionGraphData.keySet();
 
@@ -54,10 +67,18 @@ public class Statistics  implements java.io.Serializable{
         return lastValue + calculateAverageQuantity();
     }
 
+    /**
+     *
+     * @return
+     */
     public HashMap<Integer, Double> getIncomeGraphData() {
         return incomeGraphData;
     }
 
+    /**
+     *
+     * @return
+     */
     public HashMap<Integer, Double> getProductionGraphData() {
         return productionGraphData;
     }
