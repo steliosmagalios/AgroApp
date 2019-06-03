@@ -1,4 +1,4 @@
-package gr.eagro.agroapp;
+package gr.eagro.agroapp.model;
 
 
 import java.time.LocalDate;

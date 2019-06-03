@@ -1,11 +1,8 @@
-package gr.eagro.agroapp;
+package gr.eagro.agroapp.model;
 
-import java.util.ArrayList;
+public class Tree extends Plant {
 
-
-public class Crop extends Plant {
-
-    private double quantity;
+    private int quantity;
 
     /*Constructor*/
 
@@ -17,7 +14,7 @@ public class Crop extends Plant {
      * @param isHybrid
      * @param quantity
      */
-    public Crop(String id, Fertilizer fertilizer, String name, boolean isHybrid, double quantity) {
+    public Tree(String id, Fertilizer fertilizer, String name, boolean isHybrid, int quantity) {
         super(id, fertilizer, name, isHybrid);
         this.quantity = quantity;
     }
@@ -29,8 +26,17 @@ public class Crop extends Plant {
      * @param name
      * @param quantity
      */
-    public Crop(String id, Fertilizer fertilizer, String name, double quantity) {
+    public Tree(String id, Fertilizer fertilizer, String name, int quantity) {
         super(id, fertilizer, name);
         this.quantity = quantity;
     }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }
+

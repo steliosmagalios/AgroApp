@@ -1,11 +1,7 @@
-package gr.eagro.agroapp;
+package gr.eagro.agroapp.model;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.io.Serializable;
 
 
@@ -43,7 +39,8 @@ public abstract class Plant  implements Serializable {
      * @param name
      */
     public Plant(String id, Fertilizer fertilizer, String name) {
-       this(id,fertilizer,name,false);
+
+        this(id,fertilizer,name,false);
     }
 
 
@@ -85,7 +82,7 @@ public abstract class Plant  implements Serializable {
         if(key.toLowerCase().equals("hybrids")){
             fInputStream  = getClass().getResourceAsStream("/info/hybrids/" + this.id + "/" + resultId + ".txt");
         }else if (key.toLowerCase().equals("diseases")){
-            fInputStream  = getClass().getResourceAsStream("/info/diseases/" + this.id + "/" + resultId + ".txt");
+            fInputStream  = getClass().getResourceAsStream("/info/diseases/" + this.id + "/" + this.getDiseaseId(resultId) + ".txt");
         }else fInputStream=null;
 
 
@@ -93,6 +90,9 @@ public abstract class Plant  implements Serializable {
         return fInputStream;
    }
 
+   private String getDiseaseId(String aString){
+       return aString.replaceAll("\\s+","").toLowerCase();
+   }
 
     /**
      *
@@ -135,6 +135,7 @@ public abstract class Plant  implements Serializable {
      */
 
     public boolean isHybrid() {
+
         return isHybrid;
     }
 
@@ -152,6 +153,7 @@ public abstract class Plant  implements Serializable {
      */
     @Override
     public String toString() {
+
         return this.name;
     }
 }

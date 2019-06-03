@@ -1,4 +1,4 @@
-package gr.eagro.agroapp;
+package gr.eagro.agroapp.model;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -30,9 +30,8 @@ public class Fertilizer  implements Serializable{
      * @return
      */
     public double calculateCost(double fertilizerQuantity) {
-        double totalcost;
-        totalcost = fertilizerQuantity * this.cost;
-        return totalcost;
+
+        return   fertilizerQuantity * this.cost;
     }
 
     /**
@@ -41,16 +40,10 @@ public class Fertilizer  implements Serializable{
      * @return
      */
     public double calculateQuantity(Plant aPlant) {
-        InputStream fInputStream;
-        fInputStream  = getClass().getResourceAsStream("/info/plants/fertilizer/" + aPlant.getId() + ".txt");
 
-
-        Scanner s = new Scanner(new InputStreamReader(fInputStream, StandardCharsets.UTF_8));
-        String q = s.next();
-
-        if (!(q.isEmpty())) {
-            return this.quantity * Double.parseDouble(q);
-        } else return 0;
+        if(aPlant.getClass().getSimpleName().equals("Tree")){
+            return this.quantity * ((Tree)aPlant).getQuantity();
+        }else return this.quantity * ((Crop)aPlant).getQuantity();
 
     }
 
@@ -68,7 +61,5 @@ public class Fertilizer  implements Serializable{
     }
 
 
-
-
-    }
+}
 
