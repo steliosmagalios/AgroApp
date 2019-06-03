@@ -1,4 +1,4 @@
-package gr.eagro.agroapp.gui;
+package gr.eagro.agroapp.utils;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -8,7 +8,7 @@ public class TableEntry implements Comparable<TableEntry> {
     private SimpleDoubleProperty income;
     private SimpleDoubleProperty quantity;
 
-    TableEntry(int year, double income, double quality) {
+    public TableEntry(int year, double income, double quality) {
         this.year = new SimpleIntegerProperty(year);
         this.income = new SimpleDoubleProperty(income);
         this.quantity = new SimpleDoubleProperty(quality);
@@ -16,10 +16,6 @@ public class TableEntry implements Comparable<TableEntry> {
 
     public int getYear() {
         return year.get();
-    }
-
-    public SimpleIntegerProperty yearProperty() {
-        return year;
     }
 
     public void setYear(int year) {
@@ -30,20 +26,12 @@ public class TableEntry implements Comparable<TableEntry> {
         return income.get();
     }
 
-    public SimpleDoubleProperty incomeProperty() {
-        return income;
-    }
-
     public void setIncome(double income) {
         this.income.set(income);
     }
 
     public double getQuantity() {
         return quantity.get();
-    }
-
-    public SimpleDoubleProperty quantityProperty() {
-        return quantity;
     }
 
     public void setQuantity(double quantity) {

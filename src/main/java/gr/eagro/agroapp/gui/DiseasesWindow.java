@@ -4,9 +4,11 @@ import gr.eagro.agroapp.Crop;
 import gr.eagro.agroapp.Main;
 import gr.eagro.agroapp.Plant;
 import gr.eagro.agroapp.Tree;
+import gr.eagro.agroapp.utils.ApplicationIndexes;
+import gr.eagro.agroapp.utils.ApplicationUtilities;
+import gr.eagro.agroapp.utils.ApplicationWindows;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
@@ -26,7 +28,7 @@ public class DiseasesWindow extends ApplicationWindow {
     private ArrayList<Crop> cropItems;
 
     public DiseasesWindow() {
-        super("Ασθένειες", EnumWindowLocation.DISEASES_WINDOW);
+        super("Ασθένειες", ApplicationWindows.DISEASES_WINDOW);
     }
 
     @Override
@@ -51,13 +53,11 @@ public class DiseasesWindow extends ApplicationWindow {
     public void openResultWindow() {
         Plant selectedPlant = plantList.getSelectionModel().getSelectedItem();
         if(selectedPlant == null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText(ApplicationIndexes.WARNING_SELECT_PLANT);
-            alert.show();
+            ApplicationUtilities.createWarning(ApplicationIndexes.WARNING_SELECT_PLANT);
             return;
         }
 
-        DiseasesResultWindow controller = (DiseasesResultWindow) openWindow(EnumWindowLocation.DISEASES_RESULT_WINDOW);
+        DiseasesResultWindow controller = (DiseasesResultWindow) openWindow(ApplicationWindows.DISEASES_RESULT_WINDOW);
         controller.getData(selectedPlant);
     }
 

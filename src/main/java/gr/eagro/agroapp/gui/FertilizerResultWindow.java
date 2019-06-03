@@ -1,6 +1,7 @@
 package gr.eagro.agroapp.gui;
 
 import gr.eagro.agroapp.Plant;
+import gr.eagro.agroapp.utils.ApplicationWindows;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -22,9 +23,10 @@ public class FertilizerResultWindow extends ApplicationWindow {
     private int kgToDisplay;
     private double priceToDisplay;
     private Plant plant;
+    private double quantity;
 
     public FertilizerResultWindow() {
-        super("Αποτελέσματα", EnumWindowLocation.FERTILIZER_RESULT_WINDOW);
+        super("Αποτελέσματα", ApplicationWindows.FERTILIZER_RESULT_WINDOW);
     }
 
     @Override
@@ -38,23 +40,21 @@ public class FertilizerResultWindow extends ApplicationWindow {
 
     }
 
-    public void getData(Plant plant) {
+    public void getData(Plant plant, double quantity) {
         this.plant = plant;
+        this.quantity = quantity;
         initializeImportedComponents();
     }
 
     private void initializeImportedComponents() {
         DecimalFormat df = new DecimalFormat("#.##");
         labelKg.setText(plant.getFertilizer().calculateQuantity(plant) + " Kg");
-        labelPrice.setText(df.format(plant.getFertilizer().calculateCost(plant.getFertilizer().calculateQuantity(plant))) + "€");
+        labelPrice.setText(df.format(plant.getFertilizer().calculateCost(quantity)) + "€");
 
         StringBuilder builder = new StringBuilder();
         try {
-//            File f = plant.getFertilizer().getInfo();
             InputStream f = plant.getFertilizer().getInfo();
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(plant.getFertilizer().getInfo(), StandardCharsets.UTF_8));
-//            BufferedReader reader = new BufferedReader(new FileReader(f));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(f, StandardCharsets.UTF_8));
             String line;
             while ((line = reader.readLine()) != null) {
                 builder.append(line);
@@ -70,4 +70,6 @@ public class FertilizerResultWindow extends ApplicationWindow {
             e.printStackTrace();
         }
     }
+
+
 }

@@ -1,11 +1,12 @@
 package gr.eagro.agroapp;
 
 import gr.eagro.agroapp.gui.ApplicationWindow;
-import gr.eagro.agroapp.gui.EnumWindowLocation;
+import gr.eagro.agroapp.utils.ApplicationWindows;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -28,9 +29,11 @@ public class Main extends Application {
         try {
             window = primaryStage;
 
-            Parent root = FXMLLoader.load(getClass().getResource(EnumWindowLocation.MAIN_MENU_WINDOW.getLocation()));
+            Parent root = FXMLLoader.load(getClass().getResource(ApplicationWindows.MAIN_MENU_WINDOW.getLocation()));
             window.setScene(new Scene(root));
-            window.setTitle("AgroApp");
+            window.setResizable(false);
+            window.sizeToScene();
+            window.getIcons().add(new Image(getClass().getResourceAsStream("/images/titleIcon.png")));
             window.show();
         }catch (Exception e) {
             e.printStackTrace();
@@ -42,65 +45,7 @@ public class Main extends Application {
         loadObjects();
 //        manualInit();
 
-        navigation = new Stack<ApplicationWindow>() {
-            @Override
-            public synchronized String toString() {
-                StringBuilder location = new StringBuilder();
-                for(ApplicationWindow item : navigation)
-                    location.append(item).append(" > ");
-                return location.toString();
-            }
-        };
-    }
-
-    private void manualInit() {
-        plants = new ArrayList<>();
-        plants.add(new Tree("treecherry", new Fertilizer("treecherryfert", 12f, 10.45f), "Cherry", 50));
-        plants.add(new Crop("cropcuccumber", new Fertilizer("cropcuccumberfert", 12f, 10.45f), "Cuccumber", 100));
-
-        plants.forEach(plant -> {
-            for(int i=0;i<10;i++)
-                plant.addDisease(Integer.toString(i));
-        });
-
-        calendar = new Calendar(new ArrayList<>());
-        calendar.addEntry(new CalendarEntry(25, 5, 2019, "Test1"));
-        calendar.addEntry(new CalendarEntry(25, 5, 2019, "Test2"));
-        calendar.addEntry(new CalendarEntry(26, 5, 2019, "Test3"));
-        calendar.addEntry(new CalendarEntry(1, 6, 2019, "Test4"));
-
-        statistics = new Statistics();
-
-
-        Main.getStatistics().getIncomeGraphData().put(2018+1,(200+23.0));
-        Main.getStatistics().getIncomeGraphData().put(2018+2,(200+14.0));
-        Main.getStatistics().getIncomeGraphData().put(2018+8,(200+45.0));
-        Main.getStatistics().getIncomeGraphData().put(2018+4,(200+24.0));
-        Main.getStatistics().getIncomeGraphData().put(2018+5,(200+34.0));
-        Main.getStatistics().getIncomeGraphData().put(2018+6,(200+36.0));
-
-        Main.getStatistics().getIncomeGraphData().put(2018+3,(200+15.0));
-        Main.getStatistics().getIncomeGraphData().put(2018+7,(200+22.0));
-
-        Main.getStatistics().getIncomeGraphData().put(2018+9,(200+43.0));
-        Main.getStatistics().getIncomeGraphData().put(2018+10,(200+ 17.0));
-        Main.getStatistics().getIncomeGraphData().put(2018+11,(200+ 29.0));
-        Main.getStatistics().getIncomeGraphData().put(2018+12,(200+ 25.0));
-
-
-        Main.getStatistics().getQuantityGraphData().put(2018+1,(200+23.0));
-        Main.getStatistics().getQuantityGraphData().put(2018+2,(200+14.0));
-        Main.getStatistics().getQuantityGraphData().put(2018+3,(200+15.0));
-        Main.getStatistics().getQuantityGraphData().put(2018+4,(200+24.0));
-        Main.getStatistics().getQuantityGraphData().put(2018+5,(200+34.0));
-        Main.getStatistics().getQuantityGraphData().put(2018+6,(200+36.0));
-        Main.getStatistics().getQuantityGraphData().put(2018+7,(200+22.0));
-        Main.getStatistics().getQuantityGraphData().put(2018+8,(200+45.0));
-        Main.getStatistics().getQuantityGraphData().put(2018+9,(200+43.0));
-        Main.getStatistics().getQuantityGraphData().put(2018+10,(200+ 17.0));
-        Main.getStatistics().getQuantityGraphData().put(2018+11,(200+ 29.0));
-        Main.getStatistics().getQuantityGraphData().put(2018+12,(200+ 25.0));
-
+        navigation = new Stack<>();
     }
 
     @Override
@@ -110,7 +55,7 @@ public class Main extends Application {
         navigation.clear();
         plants.clear();
         calendar.getEntries().clear();
-        statistics.getQuantityGraphData().clear();
+        statistics.getProductionGraphData().clear();
         statistics.getIncomeGraphData().clear();
     }
 
@@ -162,5 +107,41 @@ public class Main extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void manualInit() {
+        plants = new ArrayList<>();
+
+
+        Fertilizer cropCucumberFert = new Fertilizer("cropcucumberfert", 215, 215*0.8);
+        Fertilizer cropPumpkinFert = new Fertilizer("croppumpkinfert", 180, 180*0.7);
+        Fertilizer cropBeanFert = new Fertilizer("cropbeanfert", 160, 160*1.5);
+
+        Fertilizer treeCherryFert = new Fertilizer("treecherryfert", 40, 40);
+        Fertilizer treeLemonFert = new Fertilizer("treelemonfert", 50, 50*1.3);
+        Fertilizer treeOrangeFert = new Fertilizer("treeorangefert", 60, 60*0.9);
+
+
+        Crop cropCucumber = new Crop("cropcucumber", cropCucumberFert, "Αγγουριά", false, 1);
+        Crop cropBean = new Crop("cropbean", cropBeanFert, "Φασολιά", false, 1);
+        Crop cropPumpkin = new Crop("croppumpkin", cropPumpkinFert, "Κολοκυθιά", false, 1);
+
+        Tree treeCherry = new Tree("treecherry", treeCherryFert, "Κερασιά", false, 1);
+        Tree treeLemon = new Tree("treelemon", treeLemonFert, "Λεμονιά", false, 1);
+        Tree treeOrange = new Tree("treeorange", treeOrangeFert, "Πορτοκαλιά", false, 1);
+
+
+
+        plants.add(cropBean);
+        plants.add(cropPumpkin);
+        plants.add(cropCucumber);
+
+        plants.add(treeOrange);
+        plants.add(treeCherry);
+        plants.add(treeLemon);
+
+        calendar = new Calendar();
+        statistics = new Statistics();
+
     }
 }

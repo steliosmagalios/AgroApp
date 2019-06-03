@@ -12,11 +12,6 @@
             <Image url="@../images/logo.png" />
          </image>
       </ImageView>
-      <Label fx:id="navbar" layoutX="20.0" layoutY="20.0" prefHeight="21.0" prefWidth="500.0" text="Location">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
       <Button layoutX="14.0" layoutY="676.0" mnemonicParsing="false" onAction="#openPreviousWindow" styleClass="regularBtn" text="Προηγούμενο">
          <font>
             <Font size="14.0" />
@@ -31,14 +26,15 @@
          <children>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#createNewEntry" styleClass="regularBtn" text="Προσθήκη" HBox.hgrow="ALWAYS" />
             <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteSelectedItem" styleClass="regularBtn" text="Διαγραφή" HBox.hgrow="ALWAYS" />
-            <Button layoutX="445.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#editEntry" styleClass="regularBtn" text="Επεξεργασία" HBox.hgrow="ALWAYS" />
+            <Button layoutX="445.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#editSelectedEntry" styleClass="regularBtn" text="Επεξεργασία" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
-      <BorderPane fx:id="calendarPane" layoutX="218.0" layoutY="285.0" prefHeight="290.0" prefWidth="300.0" style="-fx-background-color: blue;" />
-      <Label layoutX="216.0" layoutY="232.0" text="Επιλέξτε μια ημερομηνία:">
+      <BorderPane fx:id="calendarPane" layoutX="144.0" layoutY="188.0" prefHeight="387.0" prefWidth="400.0" style="-fx-background-color: blue;" />
+      <Label layoutX="192.0" layoutY="143.0" text="Επιλέξτε μια ημερομηνία:">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
+      <HBox fx:id="navigationHBox" alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="32.0" prefWidth="500.0" />
    </children>
 </Pane>

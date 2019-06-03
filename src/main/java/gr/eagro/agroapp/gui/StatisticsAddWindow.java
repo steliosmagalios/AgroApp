@@ -2,6 +2,9 @@ package gr.eagro.agroapp.gui;
 
 import gr.eagro.agroapp.Main;
 import gr.eagro.agroapp.Statistics;
+import gr.eagro.agroapp.utils.ApplicationUtilities;
+import gr.eagro.agroapp.utils.ApplicationWindows;
+import gr.eagro.agroapp.utils.TableEntry;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -27,7 +30,7 @@ public class StatisticsAddWindow extends ApplicationWindow {
     private Statistics statistics;
 
     public StatisticsAddWindow() {
-        super("Εισαγωγή Στατιστικών", EnumWindowLocation.STATISTICS_ADD_WINDOW);
+        super("Εισαγωγή Στατιστικών", ApplicationWindows.STATISTICS_ADD_WINDOW);
     }
 
     @Override
@@ -36,15 +39,15 @@ public class StatisticsAddWindow extends ApplicationWindow {
         this.statistics = Main.getStatistics();
 
         TableColumn<TableEntry, String> col1 = new TableColumn<>("Έτος");
-        TableColumn<TableEntry, String> col2 = new TableColumn<>("Έσοδα");
-        TableColumn<TableEntry, String> col3 = new TableColumn<>("Ποσότητα");
+        TableColumn<TableEntry, String> col2 = new TableColumn<>("Έσοδα (σε €)");
+        TableColumn<TableEntry, String> col3 = new TableColumn<>("Ποσότητα (σε Kg)");
 
         col1.setCellValueFactory(new PropertyValueFactory<>("year"));
         col2.setCellValueFactory(new PropertyValueFactory<>("income"));
         col3.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
         Double[] incomeValues = statistics.getIncomeGraphData().values().toArray(new Double[0]);
-        Double[] quantityValues = statistics.getQuantityGraphData().values().toArray(new Double[0]);
+        Double[] quantityValues = statistics.getProductionGraphData().values().toArray(new Double[0]);
         Integer[] years = statistics.getIncomeGraphData().keySet().toArray(new Integer[0]);
 
         List<TableEntry> entriesToAdd = new ArrayList<>();
@@ -55,6 +58,7 @@ public class StatisticsAddWindow extends ApplicationWindow {
         data = FXCollections.observableArrayList(entriesToAdd);
 
         dataTable.setItems(data);
+        dataTable.sort();
     }
 
     public void addDataToTable() {
@@ -71,25 +75,24 @@ public class StatisticsAddWindow extends ApplicationWindow {
             fieldIncome.clear();
             fieldQuantity.clear();
 
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Δεδομένα!");
-            alert.show();
+            ApplicationUtilities.createWarning("Δεδομένα!");
             return;
         }
 
         data.add(new TableEntry(year, income, quantity));
         statistics.getIncomeGraphData().put(year, income);
-        statistics.getQuantityGraphData().put(year, quantity);
+        statistics.getProductionGraphData().put(year, quantity);
+        dataTable.sort();
     }
 
     public void openResultWindow() {
-//        if(data.size() < 2) {
-//            Alert alert = new Alert(Alert.AlertType.WARNING);
-//            alert.setContentText("Όχι αρκετά δεδομένα!");
-//            alert.show();
-//            return;
-//        }
-        openWindow(EnumWindowLocation.STATISTICS_GRAPH_WINDOW);
+        if(data.size() < 2) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Όχι αρκετά δεδομένα!");
+            alert.show();
+            return;
+        }
+        openWindow(ApplicationWindows.STATISTICS_GRAPH_WINDOW);
     }
 
 }

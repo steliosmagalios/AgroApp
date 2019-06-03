@@ -1,6 +1,7 @@
 package gr.eagro.agroapp.gui;
 
 import gr.eagro.agroapp.Plant;
+import gr.eagro.agroapp.utils.ApplicationWindows;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -23,7 +24,7 @@ public class DiseasesResultWindow extends ApplicationWindow {
 
 
     public DiseasesResultWindow() {
-        super("Αποτελέσματα", EnumWindowLocation.DISEASES_RESULT_WINDOW);
+        super("Αποτελέσματα", ApplicationWindows.DISEASES_RESULT_WINDOW);
     }
 
     @Override

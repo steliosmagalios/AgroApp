@@ -4,6 +4,9 @@ import gr.eagro.agroapp.Crop;
 import gr.eagro.agroapp.Main;
 import gr.eagro.agroapp.Plant;
 import gr.eagro.agroapp.Tree;
+import gr.eagro.agroapp.utils.ApplicationIndexes;
+import gr.eagro.agroapp.utils.ApplicationUtilities;
+import gr.eagro.agroapp.utils.ApplicationWindows;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -12,6 +15,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
 
 public class FertilizerWindow extends ApplicationWindow {
 
@@ -27,7 +31,7 @@ public class FertilizerWindow extends ApplicationWindow {
     private List<Crop> cropItems;
 
     public FertilizerWindow() {
-        super("Λίπασμα", EnumWindowLocation.FERTILIZER_WINDOW);
+        super("Λίπασμα", ApplicationWindows.FERTILIZER_WINDOW);
     }
 
     @Override
@@ -56,25 +60,26 @@ public class FertilizerWindow extends ApplicationWindow {
         //Checks the TextField for an Integer
         try {
             quantity = Integer.parseInt(input.getText());
-        }catch(Exception e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText(categoryToggle.getSelectedToggle() == btnSelectTree
-                    ? ApplicationIndexes.WARNING_INSERT_TREE : ApplicationIndexes.WARNING_INSERT_CROP);
-            alert.show();
+
+            if(quantity < 0) {
+                ApplicationUtilities.createWarning((categoryToggle.getSelectedToggle() == btnSelectTree) ? ApplicationIndexes.WARNING_NEGATIVE_TREE : ApplicationIndexes.WARNING_NEGATIVE_CROP);
+                input.clear();
+                return;
+            }
+        }catch(NumberFormatException e) {
+            ApplicationUtilities.createWarning((categoryToggle.getSelectedToggle() == btnSelectTree) ? ApplicationIndexes.WARNING_INSERT_TREE : ApplicationIndexes.WARNING_INSERT_CROP);
             return;
         }
 
         //Checks the list to get the selected Plant
         Plant selectedPlant = plantList.getSelectionModel().getSelectedItem();
         if(selectedPlant == null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText(ApplicationIndexes.WARNING_SELECT_PLANT);
-            alert.show();
+            ApplicationUtilities.createWarning(ApplicationIndexes.WARNING_SELECT_PLANT);
             return;
         }
 
-        FertilizerResultWindow controller = ((FertilizerResultWindow) openWindow(EnumWindowLocation.FERTILIZER_RESULT_WINDOW));
-        controller.getData(selectedPlant);
+        FertilizerResultWindow controller = ((FertilizerResultWindow) openWindow(ApplicationWindows.FERTILIZER_RESULT_WINDOW));
+        controller.getData(selectedPlant, quantity);
     }
 
     public void treeButtonSelected() {

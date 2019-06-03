@@ -4,9 +4,11 @@ import gr.eagro.agroapp.Crop;
 import gr.eagro.agroapp.Main;
 import gr.eagro.agroapp.Plant;
 import gr.eagro.agroapp.Tree;
+import gr.eagro.agroapp.utils.ApplicationIndexes;
+import gr.eagro.agroapp.utils.ApplicationUtilities;
+import gr.eagro.agroapp.utils.ApplicationWindows;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
@@ -26,7 +28,7 @@ public class HybridsWindow extends ApplicationWindow {
     private ArrayList<Crop> cropItems;
 
     public HybridsWindow() {
-        super("Υβρίδια", EnumWindowLocation.HYBRIDS_WINDOW);
+        super("Υβρίδια", ApplicationWindows.HYBRIDS_WINDOW);
     }
 
     @Override
@@ -43,13 +45,11 @@ public class HybridsWindow extends ApplicationWindow {
         Plant selectedPlant = plantList.getSelectionModel().getSelectedItem();
 
         if(selectedPlant == null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText(ApplicationIndexes.WARNING_SELECT_PLANT);
-            alert.show();
+            ApplicationUtilities.createWarning(ApplicationIndexes.WARNING_SELECT_PLANT);
             return;
         }
 
-        HybridsResultWindow controller = (HybridsResultWindow) openWindow(EnumWindowLocation.HYBRIDS_RESULT_WINDOW);
+        HybridsResultWindow controller = (HybridsResultWindow) openWindow(ApplicationWindows.HYBRIDS_RESULT_WINDOW);
         controller.getData(selectedPlant);
     }
 

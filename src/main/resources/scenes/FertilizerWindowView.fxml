@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
 <?import java.lang.String?>
@@ -12,11 +13,6 @@
             <Image url="@../images/logo.png" />
          </image>
       </ImageView>
-      <Label fx:id="navbar" layoutX="20.0" layoutY="20.0" prefHeight="21.0" prefWidth="500.0" text="Location">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
       <Button layoutX="14.0" layoutY="676.0" mnemonicParsing="false" onAction="#openPreviousWindow" styleClass="regularBtn" text="Προηγούμενο">
          <font>
             <Font size="14.0" />
@@ -81,5 +77,6 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
+      <HBox fx:id="navigationHBox" alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="32.0" prefWidth="500.0" />
    </children>
 </Pane>

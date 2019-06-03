@@ -1,6 +1,8 @@
 package gr.eagro.agroapp.gui;
 
 import gr.eagro.agroapp.CalendarEntry;
+import gr.eagro.agroapp.utils.ApplicationIndexes;
+import gr.eagro.agroapp.utils.ApplicationUtilities;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -13,32 +15,39 @@ public class EntryCreationWindow {
     @FXML private DatePicker dateSelector;
     @FXML private TextField fieldTitle;
 
+    private CalendarEntry oldEntry;
+    private LocalDate oldDate;
+    private CalendarWindow controller;
     private Stage window;
-    private CalendarEntry entry;
 
-    public void createNewEntry() {
-        LocalDate date = dateSelector.getValue();
+    public void getData(CalendarEntry entry, boolean disableDatePicker, CalendarWindow controller, Stage window, LocalDate date) {
+        this.oldEntry = entry;
+        this.controller = controller;
+        this.window = window;
+        dateSelector.setDisable(disableDatePicker);
 
-        if(entry == null) {
-            CalendarWindow.fetchEntry(new CalendarEntry(date.getDayOfMonth(), date.getMonthValue(), date.getYear(), fieldTitle.getText()), true);
+        if(entry != null) {
+            this.oldDate = entry.getDateAsLocalDate();
+            dateSelector.setValue(entry.getDateAsLocalDate());
+            fieldTitle.setText(entry.getDisplayText());
         }
         else {
-            entry.setDay(date.getDayOfMonth());
-            entry.setMonth(date.getMonthValue());
-            entry.setYear(date.getYear());
-            entry.setDisplayText(fieldTitle.getText());
-            CalendarWindow.fetchEntry(entry, false);
+            dateSelector.setValue(date);
         }
-
-        window.close();
     }
 
-    public void getData(Stage window, LocalDate date, CalendarEntry entry) {
-        this.window = window;
-        this.entry = entry;
-        dateSelector.setValue(date);
+    @FXML
+    private void updateEntry() {
+        String displayText = fieldTitle.getText();
+        if(displayText.equalsIgnoreCase("")) {
+            ApplicationUtilities.createWarning(ApplicationIndexes.WARNING_ENTER_TEXT);
+            return;
+        }
 
-        if(entry != null)
-            fieldTitle.setText(entry.getDisplayText());
+        LocalDate date = dateSelector.getValue();
+        CalendarEntry newEntry = new CalendarEntry(date.getDayOfMonth(), date.getMonthValue(), date.getYear(), displayText);
+
+        controller.updateEnrtries(newEntry, oldDate, oldEntry);
+        window.close();
     }
 }

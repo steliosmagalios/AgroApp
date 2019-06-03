@@ -1,6 +1,6 @@
-package gr.eagro.agroapp.gui;
+package gr.eagro.agroapp.utils;
 
-public enum EnumWindowLocation {
+public enum ApplicationWindows {
 
     MAIN_MENU_WINDOW         ("/scenes/MainMenuWindowView.fxml"),
     FERTILIZER_WINDOW        ("/scenes/FertilizerWindowView.fxml"),
@@ -16,7 +16,7 @@ public enum EnumWindowLocation {
 
     private String location;
 
-    EnumWindowLocation(String location) {
+    ApplicationWindows(String location) {
         this.location = location;
     }
 

@@ -1,11 +1,7 @@
 package gr.eagro.agroapp;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public abstract class Plant  implements java.io.Serializable {
     protected String id;
@@ -38,7 +34,6 @@ public abstract class Plant  implements java.io.Serializable {
     }
 
     public void addDisease(String d){
-
         diseases.add(d);
     }
 
@@ -53,8 +48,6 @@ public abstract class Plant  implements java.io.Serializable {
         }else if (key.toLowerCase().equals("diseases")){
             fInputStream  = getClass().getResourceAsStream("/info/diseases/" + this.id + "/" + resultId + ".txt");
         }else fInputStream=null;
-
-
 
         return fInputStream;
    }

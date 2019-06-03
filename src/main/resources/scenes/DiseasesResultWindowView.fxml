@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.*?>
@@ -13,11 +14,6 @@
             <Image url="@../images/logo.png" />
          </image>
       </ImageView>
-      <Label fx:id="navbar" layoutX="20.0" layoutY="20.0" prefHeight="21.0" prefWidth="500.0" text="Location">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
       <TextArea fx:id="diseaseInfoArea" editable="false" layoutX="427.0" layoutY="144.0" prefHeight="504.0" prefWidth="838.0" wrapText="true" />
       <Label layoutX="85.0" layoutY="104.0" text="Επιλέξτε μία ασθένεια:">
          <font>
@@ -47,5 +43,6 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
+      <HBox fx:id="navigationHBox" alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="32.0" prefWidth="500.0" />
    </children>
 </Pane>

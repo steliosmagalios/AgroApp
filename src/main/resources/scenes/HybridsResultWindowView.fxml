@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
-<Pane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@../utilities/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.eagro.agroapp.gui.HybridsResultWindow">
+<?import javafx.scene.text.*?>
+<Pane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@../utilities/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.eagro.agroapp.gui.HybridsResultWindow">
    <children>
       <ImageView fitHeight="85.0" fitWidth="300.0" layoutX="966.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/logo.png" />
          </image>
       </ImageView>
-      <Label fx:id="navbar" layoutX="20.0" layoutY="20.0" prefHeight="21.0" prefWidth="500.0" text="Location">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
       <TextArea fx:id="hybridInfoArea" editable="false" layoutX="427.0" layoutY="144.0" prefHeight="504.0" prefWidth="838.0" wrapText="true" />
       <Label layoutX="85.0" layoutY="104.0" prefHeight="36.0" prefWidth="271.0" text="Επιλέξτε ένα υβρίδιο:" textAlignment="CENTER">
          <font>
@@ -51,5 +43,6 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
+      <HBox fx:id="navigationHBox" alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="32.0" prefWidth="500.0" />
    </children>
 </Pane>
