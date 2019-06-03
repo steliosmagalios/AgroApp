@@ -1,66 +1,61 @@
 package gr.eagro.agroapp;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
+import java.io.Serializable;
 
-public class Statistics  implements java.io.Serializable{
+
+public class Statistics  implements Serializable{
 
 
-    private HashMap<Integer, Double> incomeGraphData;
-    private HashMap<Integer, Double> productionGraphData;
+    HashMap<Integer, Double> incomeGraphData;
+    HashMap<Integer, Double> productionGraphData;
+
 
     public Statistics() {
-        incomeGraphData = new HashMap<>();
-        productionGraphData = new HashMap<>();
+        incomeGraphData = new HashMap<Integer, Double>();
+        productionGraphData = new HashMap<Integer, Double>();
     }
 
-    public double calculateAverageQuantity() {
-        Collection<Double> quantities = productionGraphData.values();
-
-        double total=0;
-        for (Double q: quantities) {
-            total+=q;
-        }
-        return total/productionGraphData.keySet().size();
-    }
-
+    /**
+     *
+     * @return
+     */
     public double calculateAverageIncome() {
-        Collection<Double> incomes = incomeGraphData.values();
+        ArrayList<Double> values = ((ArrayList<Double>) incomeGraphData.values());
+        Set keys =  productionGraphData.keySet();
 
-        double total=0;
-        for (Double q: incomes) {
-            total+=q;
+        double total = 0;
+
+        for (Double item : values) {
+            total += item;
         }
-        return total/productionGraphData.keySet().size();
+
+        return total/keys.size();
     }
 
-//    public double calculateAverageIncome() {
-//        ArrayList<Double> values = ((ArrayList<Double>) incomeGraphData.values());
-//        Set keys =  productionGraphData.keySet();
-//
-//        double total = 0;
-//
-//        for (Double item : values) {
-//            total += item;
-//        }
-//
-//        return total/keys.size();
-//    }
-//
-//    public double calculateAverageQuantity() {
-//        ArrayList<Double> values = ((ArrayList<Double>) productionGraphData.values());
-//        Set keys =  incomeGraphData.keySet();
-//
-//        double total = 0;
-//
-//        for (Double value : values) {
-//            total += value;
-//        }
-//
-//        return total/keys.size();
-//    }
+    /**
+     *
+     * @return
+     */
+    public double calculateAverageQuantity() {
+        ArrayList<Double> values = ((ArrayList<Double>) productionGraphData.values());
+        Set keys =  incomeGraphData.keySet();
 
+        double total = 0;
+
+        for (Double value : values) {
+            total += value;
+        }
+
+        return total/keys.size();
+    }
+
+    /**
+     *
+     * @return
+     */
     public double calculateEstimatedGrowth() {
         Set<Integer> yearSet = productionGraphData.keySet();
 
@@ -74,10 +69,18 @@ public class Statistics  implements java.io.Serializable{
         return lastValue + calculateAverageQuantity();
     }
 
+    /**
+     *
+     * @return
+     */
     public HashMap<Integer, Double> getIncomeGraphData() {
         return incomeGraphData;
     }
 
+    /**
+     *
+     * @return
+     */
     public HashMap<Integer, Double> getProductionGraphData() {
         return productionGraphData;
     }

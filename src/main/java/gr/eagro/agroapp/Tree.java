@@ -8,11 +8,26 @@ public class Tree extends Plant {
 
     /*Constructor*/
 
+    /**
+     *
+     * @param id
+     * @param fertilizer
+     * @param name
+     * @param isHybrid
+     * @param quantity
+     */
     public Tree(String id, Fertilizer fertilizer, String name, boolean isHybrid, int quantity) {
         super(id, fertilizer, name, isHybrid);
         this.quantity = quantity;
     }
 
+    /**
+     *
+     * @param id
+     * @param fertilizer
+     * @param name
+     * @param quantity
+     */
     public Tree(String id, Fertilizer fertilizer, String name, int quantity) {
         super(id, fertilizer, name);
         this.quantity = quantity;
