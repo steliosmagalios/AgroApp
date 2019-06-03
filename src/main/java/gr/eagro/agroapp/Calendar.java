@@ -2,8 +2,9 @@ package gr.eagro.agroapp;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Calendar  implements java.io.Serializable{
+public class Calendar  implements Serializable{
 	private ArrayList<CalendarEntry> entries;
 
 

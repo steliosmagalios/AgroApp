@@ -3,8 +3,10 @@ package gr.eagro.agroapp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
+import java.io.Serializable;
 
-public class Statistics  implements java.io.Serializable{
+
+public class Statistics  implements Serializable{
 
 
     HashMap<Integer, Double> incomeGraphData;

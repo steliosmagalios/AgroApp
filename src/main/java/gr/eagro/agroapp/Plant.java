@@ -6,9 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.Serializable;
 
 
-public abstract class Plant  implements java.io.Serializable {
+public abstract class Plant  implements Serializable {
     protected String id;
     protected Fertilizer fertilizer;
     protected String name;

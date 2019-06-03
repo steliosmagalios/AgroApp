@@ -3,8 +3,9 @@ package gr.eagro.agroapp;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
+import java.io.Serializable;
 
-public class Fertilizer  implements java.io.Serializable{
+public class Fertilizer  implements Serializable{
     private String id;
     private double quantity;
     private double cost;

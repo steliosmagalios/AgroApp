@@ -2,8 +2,9 @@ package gr.eagro.agroapp;
 
 
 import java.time.LocalDate;
+import java.io.Serializable;
 
-public class CalendarEntry implements java.io.Serializable ,  Comparable<CalendarEntry> {
+public class CalendarEntry implements Serializable ,  Comparable<CalendarEntry> {
 	private int day;
 	private int month;
 	private int year;
