@@ -1,6 +1,5 @@
-package gr.eagro.agroapp;
+package gr.eagro.agroapp.model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.io.Serializable;
 
