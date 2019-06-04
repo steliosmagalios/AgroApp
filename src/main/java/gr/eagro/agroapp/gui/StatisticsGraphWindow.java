@@ -1,7 +1,7 @@
 package gr.eagro.agroapp.gui;
 
 import gr.eagro.agroapp.Main;
-import gr.eagro.agroapp.Statistics;
+import gr.eagro.agroapp.model.Statistics;
 import gr.eagro.agroapp.utils.ApplicationWindows;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;

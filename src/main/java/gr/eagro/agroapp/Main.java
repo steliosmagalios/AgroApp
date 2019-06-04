@@ -1,6 +1,7 @@
 package gr.eagro.agroapp;
 
 import gr.eagro.agroapp.gui.ApplicationWindow;
+import gr.eagro.agroapp.model.*;
 import gr.eagro.agroapp.utils.ApplicationWindows;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

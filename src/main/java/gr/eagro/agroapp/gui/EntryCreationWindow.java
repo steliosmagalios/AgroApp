@@ -1,6 +1,6 @@
 package gr.eagro.agroapp.gui;
 
-import gr.eagro.agroapp.CalendarEntry;
+import gr.eagro.agroapp.model.CalendarEntry;
 import gr.eagro.agroapp.utils.ApplicationIndexes;
 import gr.eagro.agroapp.utils.ApplicationUtilities;
 import javafx.fxml.FXML;

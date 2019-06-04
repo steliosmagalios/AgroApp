@@ -1,10 +1,9 @@
 package gr.eagro.agroapp.gui;
 
-
 import com.sun.javafx.scene.control.skin.DatePickerSkin;
-import gr.eagro.agroapp.Calendar;
-import gr.eagro.agroapp.CalendarEntry;
 import gr.eagro.agroapp.Main;
+import gr.eagro.agroapp.model.Calendar;
+import gr.eagro.agroapp.model.CalendarEntry;
 import gr.eagro.agroapp.utils.ApplicationIndexes;
 import gr.eagro.agroapp.utils.ApplicationUtilities;
 import gr.eagro.agroapp.utils.ApplicationWindows;

@@ -1,9 +1,9 @@
 package gr.eagro.agroapp.gui;
 
-import gr.eagro.agroapp.Crop;
 import gr.eagro.agroapp.Main;
-import gr.eagro.agroapp.Plant;
-import gr.eagro.agroapp.Tree;
+import gr.eagro.agroapp.model.Crop;
+import gr.eagro.agroapp.model.Plant;
+import gr.eagro.agroapp.model.Tree;
 import gr.eagro.agroapp.utils.ApplicationIndexes;
 import gr.eagro.agroapp.utils.ApplicationUtilities;
 import gr.eagro.agroapp.utils.ApplicationWindows;

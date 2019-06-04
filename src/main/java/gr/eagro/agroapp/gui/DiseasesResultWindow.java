@@ -1,6 +1,6 @@
 package gr.eagro.agroapp.gui;
 
-import gr.eagro.agroapp.Plant;
+import gr.eagro.agroapp.model.Plant;
 import gr.eagro.agroapp.utils.ApplicationWindows;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
