@@ -1,21 +1,21 @@
 package gr.eagro.agroapp.model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
-import java.io.Serializable;
 
 
 public class Statistics  implements Serializable{
 
 
-    HashMap<Integer, Double> incomeGraphData;
-    HashMap<Integer, Double> productionGraphData;
+    private HashMap<Integer, Double> incomeGraphData;
+    private HashMap<Integer, Double> productionGraphData;
 
 
     public Statistics() {
-        incomeGraphData = new HashMap<Integer, Double>();
-        productionGraphData = new HashMap<Integer, Double>();
+        incomeGraphData = new HashMap<>();
+        productionGraphData = new HashMap<>();
     }
 
     /**
@@ -23,16 +23,7 @@ public class Statistics  implements Serializable{
      * @return
      */
     public double calculateAverageIncome() {
-        ArrayList<Double> values = ((ArrayList<Double>) incomeGraphData.values());
-        Set keys =  productionGraphData.keySet();
-
-        double total = 0;
-
-        for (Double item : values) {
-            total += item;
-        }
-
-        return total/keys.size();
+       return calculateAverage(incomeGraphData);
     }
 
     /**
@@ -40,16 +31,7 @@ public class Statistics  implements Serializable{
      * @return
      */
     public double calculateAverageQuantity() {
-        ArrayList<Double> values = ((ArrayList<Double>) productionGraphData.values());
-        Set keys =  incomeGraphData.keySet();
-
-        double total = 0;
-
-        for (Double value : values) {
-            total += value;
-        }
-
-        return total/keys.size();
+       return calculateAverage(productionGraphData);
     }
 
     /**
@@ -67,6 +49,23 @@ public class Statistics  implements Serializable{
         double lastValue = productionGraphData.get(last);
 
         return lastValue + calculateAverageQuantity();
+    }
+
+    /**
+     *
+     * @param map The HashMap to get the average value of.
+     *
+     * @return Returns the average of the values stored inside the HashMap.
+     *
+    * */
+    private double calculateAverage(HashMap<Integer, Double> map) {
+        Collection<Double> collection = map.values();
+
+        double total = 0;
+        for (Double item : collection)
+            total += item;
+
+        return total / (map.keySet().size());
     }
 
     /**
