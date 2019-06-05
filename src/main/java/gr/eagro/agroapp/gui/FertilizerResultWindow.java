@@ -1,6 +1,8 @@
 package gr.eagro.agroapp.gui;
 
+import gr.eagro.agroapp.model.Crop;
 import gr.eagro.agroapp.model.Plant;
+import gr.eagro.agroapp.model.Tree;
 import gr.eagro.agroapp.utils.ApplicationWindows;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -20,10 +22,7 @@ public class FertilizerResultWindow extends ApplicationWindow {
     @FXML private Label labelKg;
     @FXML private Label labelPrice;
 
-    private int kgToDisplay;
-    private double priceToDisplay;
     private Plant plant;
-    private double quantity;
 
     public FertilizerResultWindow() {
         super("Αποτελέσματα", ApplicationWindows.FERTILIZER_RESULT_WINDOW);
@@ -32,24 +31,23 @@ public class FertilizerResultWindow extends ApplicationWindow {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
-
-
-
         fertilizerInfoArea.setWrapText(true);
         fertilizerInfoArea.setEditable(false);
-
     }
 
-    public void getData(Plant plant, double quantity) {
+    public void getData(Plant plant) {
         this.plant = plant;
-        this.quantity = quantity;
         initializeImportedComponents();
     }
 
     private void initializeImportedComponents() {
         DecimalFormat df = new DecimalFormat("#.##");
         labelKg.setText(plant.getFertilizer().calculateQuantity(plant) + " Kg");
-        labelPrice.setText(df.format(plant.getFertilizer().calculateCost(quantity)) + "€");
+
+        if(plant instanceof Tree)
+            labelPrice.setText(df.format(plant.getFertilizer().calculateCost(((Tree) plant).getQuantity())) + "€");
+        else
+            labelPrice.setText(df.format(plant.getFertilizer().calculateCost(((Crop) plant).getQuantity())) + "€");
 
         StringBuilder builder = new StringBuilder();
         try {

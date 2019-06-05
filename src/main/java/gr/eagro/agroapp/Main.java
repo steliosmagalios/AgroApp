@@ -36,7 +36,7 @@ public class Main extends Application {
             window.sizeToScene();
             window.getIcons().add(new Image(getClass().getResourceAsStream("/images/titleIcon.png")));
             window.show();
-        }catch (Exception e) {
+        }catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -87,11 +87,11 @@ public class Main extends Application {
     @SuppressWarnings("unchecked")
     private void loadObjects() {
         try {
-            ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(new File(SAVE_FILE_LOCATION + SAVE_FILE_NAME)));
-            plants = ((ArrayList<Plant>) objectInputStream.readObject());
-            calendar = ((Calendar) objectInputStream.readObject());
-            statistics = ((Statistics) objectInputStream.readObject());
-            objectInputStream.close();
+            ObjectInputStream reader = new ObjectInputStream(new FileInputStream(new File(SAVE_FILE_LOCATION + SAVE_FILE_NAME)));
+            plants = ((ArrayList<Plant>) reader.readObject());
+            calendar = ((Calendar) reader.readObject());
+            statistics = ((Statistics) reader.readObject());
+            reader.close();
         } catch (Exception e) {
             e.printStackTrace();
             stop();
@@ -100,11 +100,11 @@ public class Main extends Application {
 
     private void saveObjects() {
         try {
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(new File(SAVE_FILE_LOCATION + SAVE_FILE_NAME)));
-            objectOutputStream.writeObject(plants);
-            objectOutputStream.writeObject(calendar);
-            objectOutputStream.writeObject(statistics);
-            objectOutputStream.close();
+            ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(new File(SAVE_FILE_LOCATION + SAVE_FILE_NAME)));
+            writer.writeObject(plants);
+            writer.writeObject(calendar);
+            writer.writeObject(statistics);
+            writer.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -123,14 +123,76 @@ public class Main extends Application {
         Fertilizer treeOrangeFert = new Fertilizer("treeorangefert", 60, 60*0.9);
 
 
+
         Crop cropCucumber = new Crop("cropcucumber", cropCucumberFert, "Αγγουριά", false, 1);
+
+        Crop hybBereket = new Crop("bereket", cropCucumberFert, "Bereket", true, 1);
+        Crop hybMakedon = new Crop("makedon", cropCucumberFert, "Μακεδών", true, 1);
+        Crop hybTrimax = new Crop("trimax", cropCucumberFert, "Trimax", true, 1);
+
+        cropCucumber.addHyrbid(hybBereket);
+        cropCucumber.addHyrbid(hybMakedon);
+        cropCucumber.addHyrbid(hybTrimax);
+
+
+
         Crop cropBean = new Crop("cropbean", cropBeanFert, "Φασολιά", false, 1);
+
+        Crop hybPirgetos = new Crop("pirgetos", cropBeanFert, "Πυργετός", true, 1);
+        Crop hybRapsani = new Crop("rapsani", cropBeanFert, "Ραψάνη", true,1);
+        Crop hybSemeli = new Crop("semeli", cropBeanFert, "Σέμελη", true, 1);
+
+        cropBean.addHyrbid(hybPirgetos);
+        cropBean.addHyrbid(hybRapsani);
+        cropBean.addHyrbid(hybSemeli);
+
+
+
         Crop cropPumpkin = new Crop("croppumpkin", cropPumpkinFert, "Κολοκυθιά", false, 1);
 
+        Crop hybAngelina = new Crop("angelina", cropPumpkinFert, "Angelina", true, 1);
+        Crop hybAstro = new Crop("astro", cropPumpkinFert, "Άστρο", true, 1);
+        Crop hybClarion = new Crop("clarion", cropPumpkinFert, "Clarion", true, 1);
+
+        cropPumpkin.addHyrbid(hybAngelina);
+        cropPumpkin.addHyrbid(hybAstro);
+        cropPumpkin.addHyrbid(hybClarion);
+
+
+
         Tree treeCherry = new Tree("treecherry", treeCherryFert, "Κερασιά", false, 1);
+
+        Tree hybGisela5 = new Tree("gisela5", treeCherryFert, "Gisela 5", true, 1);
+        Tree hybGisela6 = new Tree("gisela6", treeCherryFert, "Gisela 6", true, 1);
+        Tree hybPrunus = new Tree("prunusmahaleb", treeCherryFert, "Prunus Mahaleb", true, 1);
+
+        treeCherry.addHyrbid(hybGisela5);
+        treeCherry.addHyrbid(hybGisela6);
+        treeCherry.addHyrbid(hybPrunus);
+
+
+
         Tree treeLemon = new Tree("treelemon", treeLemonFert, "Λεμονιά", false, 1);
+
+        Tree hybEureka = new Tree("eureka", treeLemonFert, "Eureka", true, 1);
+        Tree hybLapith = new Tree("lapithiotiki", treeLemonFert, "Λαπιθιώτικη", true, 1);
+        Tree hybPolofori = new Tree("polifori", treeLemonFert, "Πολύφορη", true, 1);
+
+        treeLemon.addHyrbid(hybEureka);
+        treeLemon.addHyrbid(hybLapith);
+        treeLemon.addHyrbid(hybPolofori);
+
+
+
         Tree treeOrange = new Tree("treeorange", treeOrangeFert, "Πορτοκαλιά", false, 1);
 
+        Tree hybJaffa = new Tree("jaffa", treeOrangeFert, "Jaffa", true, 1);
+        Tree hybMoro = new Tree("moro", treeOrangeFert, "Moro", true, 1);
+        Tree hybSanguinelli = new Tree("sanguinelli", treeCherryFert, "Sanguinelli", true, 1);
+
+        treeOrange.addHyrbid(hybJaffa);
+        treeOrange.addHyrbid(hybMoro);
+        treeOrange.addHyrbid(hybSanguinelli);
 
 
         plants.add(cropBean);

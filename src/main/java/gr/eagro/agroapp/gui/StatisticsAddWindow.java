@@ -58,7 +58,7 @@ public class StatisticsAddWindow extends ApplicationWindow {
         data = FXCollections.observableArrayList(entriesToAdd);
 
         dataTable.setItems(data);
-        dataTable.sort();
+        dataTable.getSortOrder().add(col1);
     }
 
     public void addDataToTable() {
@@ -82,7 +82,10 @@ public class StatisticsAddWindow extends ApplicationWindow {
         data.add(new TableEntry(year, income, quantity));
         statistics.getIncomeGraphData().put(year, income);
         statistics.getProductionGraphData().put(year, quantity);
-        dataTable.sort();
+
+        fieldYear.clear();
+        fieldIncome.clear();
+        fieldQuantity.clear();
     }
 
     public void openResultWindow() {

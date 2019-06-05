@@ -3,9 +3,12 @@ package gr.eagro.agroapp.gui;
 import gr.eagro.agroapp.model.Plant;
 import gr.eagro.agroapp.utils.ApplicationWindows;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 import java.io.BufferedReader;
@@ -20,6 +23,8 @@ public class HybridsResultWindow extends ApplicationWindow {
 
     @FXML private TextArea hybridInfoArea;
     @FXML private VBox hybridsSelectionBox;
+    @FXML private Label infoLabel;
+    @FXML private ImageView displayImage;
 
     private ToggleGroup toggleGroup;
 
@@ -32,6 +37,9 @@ public class HybridsResultWindow extends ApplicationWindow {
         super.initialize(location, resources);
 
         toggleGroup = new ToggleGroup();
+        toggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            infoLabel.setText(((RadioButton) newValue).getText());
+        });
 
     }
 
@@ -63,6 +71,14 @@ public class HybridsResultWindow extends ApplicationWindow {
                 }catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                //loading the image
+                try {
+                    displayImage.setImage(new Image(getClass().getResourceAsStream("/assets/images/hybrids/" + plant.getId() + "/" + p.getId() + ".png")));
+                } catch (NullPointerException e) {
+                    displayImage.setImage(new Image(getClass().getResourceAsStream("/images/placeholder.png")));
+                }
+
             });
 
             hybridsSelectionBox.getChildren().add(button);

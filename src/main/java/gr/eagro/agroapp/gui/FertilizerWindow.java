@@ -78,8 +78,14 @@ public class FertilizerWindow extends ApplicationWindow {
             return;
         }
 
+        if(selectedPlant instanceof Tree) {
+            ((Tree) selectedPlant).setQuantity(quantity);
+        } else {
+            ((Crop) selectedPlant).setQuantity(quantity);
+        }
+
         FertilizerResultWindow controller = ((FertilizerResultWindow) openWindow(ApplicationWindows.FERTILIZER_RESULT_WINDOW));
-        controller.getData(selectedPlant, quantity);
+        controller.getData(selectedPlant);
     }
 
     public void treeButtonSelected() {

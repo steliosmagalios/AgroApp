@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -17,6 +19,7 @@ public class DiseasesResultWindow extends ApplicationWindow {
     @FXML private TextArea diseaseInfoArea;
     @FXML private VBox diseasesSelectionBox;
     @FXML private Label infoLabel;
+    @FXML private ImageView displayImage;
 
     private ToggleGroup toggleGroup;
 
@@ -35,9 +38,15 @@ public class DiseasesResultWindow extends ApplicationWindow {
 
     private void initializeComponents() {
         toggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            // TODO: 19-May-19 ADD INFORMATION TO LABEL ABOVE THE TEXT AREA AND SET THE TEXT ON THE TEXT AREA
             infoLabel.setText(((RadioButton) newValue).getText());
             diseaseInfoArea.setText(((RadioButton) newValue).getText());
+
+            // TODO: 05-Jun-19 Add Images
+            try {
+                displayImage.setImage(new Image(getClass().getResourceAsStream("/assets/images/" + selectedPlant.getId() + "/")));
+            } catch (NullPointerException e) {
+                displayImage.setImage(new Image(getClass().getResourceAsStream("/images/placeholder.png")));
+            }
         });
 
         selectedPlant.getDiseases().forEach(s -> {
