@@ -10,7 +10,7 @@ public abstract class Plant  implements Serializable {
     protected Fertilizer fertilizer;
     protected String name;
     protected ArrayList<Plant> hybrids = new ArrayList<>() ;
-    protected ArrayList<String> diseases = new ArrayList<>();
+    protected ArrayList<Disease> diseases = new ArrayList<>();
     protected boolean isHybrid;
 
 
@@ -58,7 +58,7 @@ public abstract class Plant  implements Serializable {
      *
      * @param d
      */
-    public void addDisease(String d){
+    public void addDisease(Disease d){
 
         diseases.add(d);
     }
@@ -79,10 +79,10 @@ public abstract class Plant  implements Serializable {
      */
    public InputStream getInfo(String key, String resultId){
         InputStream fInputStream;
-        if(key.toLowerCase().equals("hybrids")){
+        if(key.equalsIgnoreCase("hybrids")){
             fInputStream  = getClass().getResourceAsStream("/info/hybrids/" + this.id + "/" + resultId + ".txt");
-        }else if (key.toLowerCase().equals("diseases")){
-            fInputStream  = getClass().getResourceAsStream("/info/diseases/" + this.id + "/" + this.getDiseaseId(resultId) + ".txt");
+        }else if (key.equalsIgnoreCase("diseases")){
+            fInputStream  = getClass().getResourceAsStream("/info/diseases/" + this.id + "/" + resultId + ".txt");
         }else fInputStream=null;
 
 
@@ -90,9 +90,7 @@ public abstract class Plant  implements Serializable {
         return fInputStream;
    }
 
-   private String getDiseaseId(String aString){
-       return aString.replaceAll("\\s+","").toLowerCase();
-   }
+
 
     /**
      *
@@ -143,7 +141,7 @@ public abstract class Plant  implements Serializable {
      *
      * @return
      */
-    public ArrayList<String> getDiseases() {
+    public ArrayList<Disease> getDiseases() {
         return diseases;
     }
 
