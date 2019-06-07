@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="AgroAPP:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/AgroAPP_jar</output-path>
-    <root id="archive" name="AgroAPP.jar">
-      <element id="module-output" name="AgroAPP" />
-    </root>
-  </artifact>
-</component>
