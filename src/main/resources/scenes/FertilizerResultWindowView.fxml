@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
-<Pane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@../utilities/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.eagro.agroapp.gui.FertilizerResultWindow">
+<Pane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@../utilities/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.eagro.agroapp.gui.FertilizerResultWindow">
    <children>
       <ImageView fitHeight="85.0" fitWidth="300.0" layoutX="966.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -47,7 +47,7 @@
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="40.0" layoutY="273.0" mnemonicParsing="false" styleClass="regularBtn" text="Προσθήκη αποτελεσμάτων στο Ημερολόγιο">
+      <Button layoutX="40.0" layoutY="273.0" mnemonicParsing="false" onAction="#createNewEntry" styleClass="regularBtn" text="Προσθήκη αποτελεσμάτων στο Ημερολόγιο">
          <font>
             <Font size="15.0" />
          </font>

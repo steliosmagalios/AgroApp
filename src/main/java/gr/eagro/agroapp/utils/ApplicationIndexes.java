@@ -19,4 +19,7 @@ public class ApplicationIndexes {
     public static final String WARNING_NEGATIVE_CROP = "Ο αριθμός των στρεμμάτων δεν μπορεί να είναι αρνητικός";
 
     public static final String WARNING_NO_ENTRIES = "Δεν υπάρχουν καταχωρήσεις για σήμερα.";
+
+    //Messages
+    public static final String MESSAGE_NO_INFO_FOUND = "Δεν υπάρχουν διαθέσιμες πληροφορίες.";
 }

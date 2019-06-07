@@ -3,17 +3,21 @@ package gr.eagro.agroapp.gui;
 import gr.eagro.agroapp.model.Crop;
 import gr.eagro.agroapp.model.Plant;
 import gr.eagro.agroapp.model.Tree;
+import gr.eagro.agroapp.utils.ApplicationIndexes;
 import gr.eagro.agroapp.utils.ApplicationWindows;
+import gr.eagro.agroapp.utils.EnumProcedure;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class FertilizerResultWindow extends ApplicationWindow {
@@ -62,11 +66,16 @@ public class FertilizerResultWindow extends ApplicationWindow {
 
             fertilizerInfoArea.setText(builder.toString());
         } catch (NullPointerException e) {
-            e.printStackTrace();
-            System.out.println("Null");
-        } catch (Exception e) {
+            fertilizerInfoArea.setText(ApplicationIndexes.MESSAGE_NO_INFO_FOUND);
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void createNewEntry() {
+        new EntryCreationWindow("Δημιουργία καταχώτησης", LocalDate.now(), EnumProcedure.FERTILIZING, plant.getName());
     }
 
 
