@@ -1,6 +1,7 @@
 package gr.eagro.agroapp.gui;
 
 import gr.eagro.agroapp.model.Plant;
+import gr.eagro.agroapp.utils.ApplicationUtilities;
 import gr.eagro.agroapp.utils.ApplicationWindows;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,12 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 
 public class HybridsResultWindow extends ApplicationWindow {
@@ -48,17 +44,17 @@ public class HybridsResultWindow extends ApplicationWindow {
     }
 
     private void initializeComponents(Plant plant) {
-        plant.getHybrids().forEach(p -> {
+        plant.getHybrids().forEach(hybrid -> {
             RadioButton button = new RadioButton();
-            button.setText(p.getName());
+            button.setText(hybrid.getName());
             button.getStyleClass().remove("radio-button");
             button.getStyleClass().addAll("toggle-button", "regularBtn");
             button.setToggleGroup(toggleGroup);
             button.setMaxWidth(Double.MAX_VALUE);
             button.setPrefHeight(45);
 
-            button.onActionProperty().set(event -> {
-                try {
+            button.setOnAction(event -> {
+               /* try {
                     InputStream stream = plant.getInfo("hybrids", p.getId());
                     BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
 
@@ -71,10 +67,13 @@ public class HybridsResultWindow extends ApplicationWindow {
                 }catch (IOException e) {
                     e.printStackTrace();
                 }
+*/
+
+               hybridInfoArea.setText(ApplicationUtilities.readFile(plant.getInfo("hybrids", hybrid.getId())));
 
                 //loading the image
                 try {
-                    displayImage.setImage(new Image(getClass().getResourceAsStream("/assets/images/hybrids/" + plant.getId() + "/" + p.getId() + ".png")));
+                    displayImage.setImage(new Image(getClass().getResourceAsStream("/assets/images/hybrids/" + plant.getId() + "/" + hybrid.getId() + ".png")));
                 } catch (NullPointerException e) {
                     displayImage.setImage(new Image(getClass().getResourceAsStream("/images/placeholder.png")));
                 }

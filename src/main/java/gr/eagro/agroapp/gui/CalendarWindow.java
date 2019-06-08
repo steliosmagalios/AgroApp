@@ -7,9 +7,9 @@ import gr.eagro.agroapp.model.CalendarEntry;
 import gr.eagro.agroapp.utils.ApplicationIndexes;
 import gr.eagro.agroapp.utils.ApplicationUtilities;
 import gr.eagro.agroapp.utils.ApplicationWindows;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.DateCell;
@@ -20,8 +20,6 @@ import javafx.util.Callback;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class CalendarWindow extends ApplicationWindow {
@@ -29,10 +27,11 @@ public class CalendarWindow extends ApplicationWindow {
     @FXML private ListView<CalendarEntry> dayEntries;
     @FXML private BorderPane calendarPane;
 
-    private ListProperty<CalendarEntry> listProperty = new SimpleListProperty<>();
-
     private Calendar calendar;
     private DatePicker datePicker;
+    private ObservableList<CalendarEntry> observableEntries;
+
+    private EntryCreationWindow entryWindow;
 
     public CalendarWindow() {
         super("Ημερολόγιο", ApplicationWindows.CALENDAR_WINDOW);
@@ -45,6 +44,12 @@ public class CalendarWindow extends ApplicationWindow {
         this.datePicker = new DatePicker();
         datePicker.setValue(LocalDate.now());
 
+        this.observableEntries = FXCollections.observableArrayList(calendar.getEntries());
+
+        FilteredList<CalendarEntry> filteredList = new FilteredList<>(observableEntries);
+        dayEntries.setItems(filteredList.filtered(entry -> entry.getDateAsLocalDate().equals(datePicker.getValue())));
+
+
         final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
             @Override
             public DateCell call(DatePicker param) {
@@ -55,36 +60,28 @@ public class CalendarWindow extends ApplicationWindow {
                         for(CalendarEntry entry: calendar.getEntries())
                             if(entry.getDateAsLocalDate().equals(item))
                                 getStyleClass().add("selected-date-cell");
+
+                        if(item.isBefore(LocalDate.now())) {
+                            setDisable(true);
+                            getStyleClass().add("disabled-date-cell");
+                        }
                     }
                 };
             }
         };
         datePicker.setDayCellFactory(dayCellFactory);
         datePicker.valueProperty().addListener((observable, oldValue, newValue) ->
-                listProperty.set(FXCollections.observableArrayList(getEntriesFromDate(newValue))));
-
-//        datePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
-//            if(newValue != null)
-//                dayEntries.getItems().setAll(getEntriesFromDate(newValue));
-//        });
+                filteredList.setPredicate(entry -> entry.getDateAsLocalDate().equals(newValue)));
 
         DatePickerSkin datePickerSkin = new DatePickerSkin(datePicker);
         Node datePickerDisplayNode = datePickerSkin.getPopupContent();
         datePickerDisplayNode.getStyleClass().add("calendar-picker");
         calendarPane.setCenter(datePickerDisplayNode);
-
-//        dayEntries.getItems().setAll(getEntriesFromDate(LocalDate.now()));
-
-        listProperty.set(FXCollections.observableArrayList(getEntriesFromDate(datePicker.getValue())));
-        dayEntries.itemsProperty().bind(listProperty);
-
     }
 
     @FXML
     private void createNewEntry() {
-        openEntryWindow("Προσθήκη καταχώρησης.", datePicker.getValue(), null, true);
-
-//        EntryCreationWindow.openWindow(null, datePicker.getValue());
+        new EntryCreationWindow("Προσθήκη Καταχώρησης", datePicker.getValue(), observableEntries);
     }
 
     @FXML
@@ -97,8 +94,8 @@ public class CalendarWindow extends ApplicationWindow {
         }
         if(!ApplicationUtilities.createConfirmation(ApplicationIndexes.CONFIRM_DELETE_ENTRY)) return;
 
-        dayEntries.getItems().remove(entryToRemove);
         calendar.removeEntry(entryToRemove);
+        observableEntries.setAll(calendar.getEntries());
         dayEntries.getSelectionModel().select(null);
     }
 
@@ -109,36 +106,6 @@ public class CalendarWindow extends ApplicationWindow {
             ApplicationUtilities.createWarning(ApplicationIndexes.WARNING_SELECT_ENTRY);
             return;
         }
-//        openEntryWindow("Επεξεργασία καταχώρησης.", entryToEdit.getDateAsLocalDate(), entryToEdit, false);
-        new EntryCreationWindow("Επεξεργασία καταχώρησης", entryToEdit);
+        new EntryCreationWindow("Επεξεργασία καταχώρησης", entryToEdit, observableEntries);
     }
-
-    public void updateEnrtries(CalendarEntry newEntry, LocalDate oldDate, CalendarEntry oldEntry) {
-
-
-
-//        if(oldEntry != null && oldDate != null) {
-//            calendar.removeEntry(oldEntry);
-//        }
-//
-//        calendar.addEntry(newEntry);
-//        dayEntries.getItems().setAll(calendar.getEntries());
-//        datePicker.setValue(newEntry.getDateAsLocalDate());
-    }
-
-    private List<CalendarEntry> getEntriesFromDate(LocalDate date) {
-        List<CalendarEntry> entries = new ArrayList<>();
-        for (CalendarEntry entry : calendar.getEntries()) {
-            if(entry.getDateAsLocalDate().equals(date))
-                entries.add(entry);
-        }
-        return entries;
-    }
-
-    private void openEntryWindow(String title, LocalDate date, CalendarEntry entry, boolean disableDatePicker) {
-
-        new EntryCreationWindow("Test", LocalDate.now());
-
-    }
-
 }

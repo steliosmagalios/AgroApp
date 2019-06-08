@@ -75,7 +75,7 @@ public class FertilizerResultWindow extends ApplicationWindow {
 
     @FXML
     private void createNewEntry() {
-        new EntryCreationWindow("Δημιουργία καταχώτησης", LocalDate.now(), EnumProcedure.FERTILIZING, plant.getName());
+        new EntryCreationWindow("Δημιουργία καταχώρησης", LocalDate.now(), EnumProcedure.FERTILIZING, plant.getName());
     }
 
 

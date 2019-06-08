@@ -57,6 +57,13 @@ public class FertilizerWindow extends ApplicationWindow {
 
         int quantity;
 
+        //Checks the list to get the selected Plant
+        Plant selectedPlant = plantList.getSelectionModel().getSelectedItem();
+        if(selectedPlant == null) {
+            ApplicationUtilities.createWarning(ApplicationIndexes.WARNING_SELECT_PLANT);
+            return;
+        }
+
         //Checks the TextField for an Integer
         try {
             quantity = Integer.parseInt(input.getText());
@@ -68,13 +75,6 @@ public class FertilizerWindow extends ApplicationWindow {
             }
         }catch(NumberFormatException e) {
             ApplicationUtilities.createWarning((categoryToggle.getSelectedToggle() == btnSelectTree) ? ApplicationIndexes.WARNING_INSERT_TREE : ApplicationIndexes.WARNING_INSERT_CROP);
-            return;
-        }
-
-        //Checks the list to get the selected Plant
-        Plant selectedPlant = plantList.getSelectionModel().getSelectedItem();
-        if(selectedPlant == null) {
-            ApplicationUtilities.createWarning(ApplicationIndexes.WARNING_SELECT_PLANT);
             return;
         }
 

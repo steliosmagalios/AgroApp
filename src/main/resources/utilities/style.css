@@ -60,7 +60,7 @@
 }
 
 .selected-date-cell {
-    -fx-background-color: #14e526;
+    -fx-background-color: #7af14a;
 }
 
 .selected-date-cell:hover {
@@ -71,6 +71,9 @@
     -fx-background-color: #0096C9;
 }
 
+.disabled-date-cell {
+    -fx-background-color: #f24b4b;
+}
 .text-area {
     -fx-font-size: 18px;
 }
