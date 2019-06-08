@@ -11,13 +11,15 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class Main extends Application {
 
     private static final String SAVE_FILE_LOCATION = "";
-    private static final String SAVE_FILE_NAME = "agroapp.dat";
+    private static final String SAVE_FILE_NAME = "AgroApp.dat";
 
     private static Stage window;
     private static Stack<ApplicationWindow> navigation;
@@ -47,6 +49,15 @@ public class Main extends Application {
 //        manualInit();
 
         navigation = new Stack<>();
+
+        //remove entries from older days
+        List<CalendarEntry> oldEntries = new ArrayList<>();
+        for(CalendarEntry entry : calendar.getEntries()) {
+            if (entry.getDateAsLocalDate().isBefore(LocalDate.now()))
+                oldEntries.add(entry);
+        }
+        oldEntries.forEach(calendar::removeEntry);
+
     }
 
     @Override
@@ -194,6 +205,48 @@ public class Main extends Application {
         treeOrange.addHyrbid(hybMoro);
         treeOrange.addHyrbid(hybSanguinelli);
 
+        Disease askochitosi = new Disease("Ασκοχίτωση", "askochitosi");
+        Disease sklirotinia = new Disease("Σκληρωτίνια", "sklirotinia");
+        Disease votritis = new Disease("Βοτρύτης", "votritis");
+
+        Disease oidio = new Disease("Ωίδιο", "oidio");
+        Disease peronosporos = new Disease("Περονόσπορος", "peronosporos");
+        Disease pythiumspp = new Disease("Pythium SPP", "pythiumspp");
+
+        Disease afides = new Disease("Αφίδες", "afides");
+        Disease anthrakosi = new Disease("Ανθράκωση", "anthrakosi");
+        Disease monilialaxa = new Disease("Monilia Laxa", "monilialaxa");
+
+        Disease fitofthora = new Disease("Φυτοθρώρα", "fitofthora");
+        Disease korifoksira = new Disease("Κωρυφοξήρα", "korifoksira");
+        Disease kommiosi = new Disease("Κομμίωση", "kommiosi");
+
+        Disease tristetsa = new Disease("Τριστέτσα", "tristetsa");
+
+
+        cropBean.addDisease(askochitosi);
+        cropBean.addDisease(sklirotinia);
+        cropBean.addDisease(votritis);
+
+        cropCucumber.addDisease(oidio);
+        cropCucumber.addDisease(peronosporos);
+        cropCucumber.addDisease(pythiumspp);
+
+        cropPumpkin.addDisease(peronosporos);
+        cropPumpkin.addDisease(sklirotinia);
+        cropPumpkin.addDisease(votritis);
+
+        treeCherry.addDisease(afides);
+        treeCherry.addDisease(anthrakosi);
+        treeCherry.addDisease(monilialaxa);
+
+        treeLemon.addDisease(anthrakosi);
+        treeLemon.addDisease(fitofthora);
+        treeLemon.addDisease(korifoksira);
+
+        treeOrange.addDisease(anthrakosi);
+        treeOrange.addDisease(kommiosi);
+        treeOrange.addDisease(tristetsa);
 
         plants.add(cropBean);
         plants.add(cropPumpkin);
