@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.*?>
+<?import java.lang.String?>
+<Pane fx:id="backgroundPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@../utilities/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.eagro.agroapp.gui.DiseasesWindow">
+   <children>
+      <ImageView fitHeight="85.0" fitWidth="300.0" layoutX="966.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="14.0" layoutY="676.0" mnemonicParsing="false" onAction="#openPreviousWindow" styleClass="regularBtn" text="Προηγούμενο">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="1075.0" layoutY="676.0" mnemonicParsing="false" onAction="#openResultWindow" styleClass="regularBtn" text="Καταχώρηση Δεδομένων">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <ListView fx:id="plantList" layoutX="685.0" layoutY="158.0" prefHeight="446.0" prefWidth="491.0" />
+      <Label fx:id="labelSelectFromList" layoutX="685.0" layoutY="128.0" prefHeight="30.0" prefWidth="491.0" text="Κείμενο για την επιλογή του ταδε:">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="btnSelectTree" contentDisplay="TOP" layoutX="123.0" layoutY="220.0" mnemonicParsing="false" onAction="#treeButtonSelected" prefHeight="175.0" prefWidth="150.0" selected="true" text="Δέντρα">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/selectTreeImg.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="categoryToggle" />
+         </toggleGroup>
+         <styleClass>
+            <String fx:value="menuBtn" />
+            <String fx:value="toggle-button" />
+         </styleClass>
+      </RadioButton>
+      <RadioButton fx:id="btnSelectCrop" contentDisplay="TOP" layoutX="350.0" layoutY="220.0" mnemonicParsing="false" onAction="#cropButtonSelected" prefHeight="175.0" prefWidth="150.0" text="Φύτρες" toggleGroup="$categoryToggle">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/selectCropImg.png" />
+               </image></ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <styleClass>
+            <String fx:value="menuBtn" />
+            <String fx:value="toggle-button" />
+         </styleClass>
+      </RadioButton>
+      <Label layoutX="222.0" layoutY="128.0" text="Επιλέξτε μία κατηγορία">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <HBox fx:id="navigationHBox" alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="32.0" prefWidth="500.0" />
+   </children>
+</Pane>

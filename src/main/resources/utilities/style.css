@@ -1,0 +1,104 @@
+.menuBtn {
+    -fx-background-radius: 0;
+    -fx-background-color: #d2e7f1;
+}
+
+.menuBtn:hover {
+    -fx-background-radius: 0;
+    -fx-background-color: #bbb;
+}
+
+.menuBtn:pressed {
+    -fx-background-radius: 0;
+    -fx-background-color: #aaa;
+}
+
+.menuBtnSelected {
+    -fx-background-color: #aaa;
+}
+
+.menuBtn:selected {
+    -fx-background-color: #aaa;
+}
+
+.regularBtn {
+    -fx-background-radius: 0;
+    -fx-background-color: #c4c4c4;
+    -fx-font-size: 15px;
+}
+
+.regularBtn:hover {
+    -fx-background-radius: 0;
+    -fx-background-color: #bbb;
+}
+
+.regularBtn:pressed {
+    -fx-background-radius: 0;
+    -fx-background-color: #aaa;
+}
+
+.regularBtn:selected {
+    -fx-background-color: #aaa;
+}
+
+.background {
+    -fx-background-color: #d2e7f1;
+}
+
+#data-table .table-cell {
+    -fx-alignment: center-right;
+    -fx-font-size: 15px;
+}
+
+.calendar-picker {
+    -fx-font-size: 26px;
+    -fx-effect: null;
+}
+
+.list-view {
+    -fx-font-size: 18px;
+}
+
+.selected-date-cell {
+    -fx-background-color: #7af14a;
+}
+
+.selected-date-cell:hover {
+    -fx-background-color: #0096C9;
+}
+
+.selected-date-cell.selected {
+    -fx-background-color: #0096C9;
+}
+
+.disabled-date-cell {
+    -fx-background-color: #f24b4b;
+}
+.text-area {
+    -fx-font-size: 18px;
+}
+
+.menu {
+    -fx-font-size: 15px;
+    -fx-background-color: inherit;
+}
+
+.menu:hover .label{
+    -fx-underline: true;
+    -fx-text-fill: blue;
+}
+
+.navigation-spacer {
+    -fx-font-size: 15px;
+}
+
+.navigation-btn {
+    -fx-font-size: 15px;
+    -fx-background-color: transparent;
+}
+
+.navigation-btn:hover {
+    -fx-underline: true;
+    -fx-text-fill: blue;
+}
+

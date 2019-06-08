@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.*?>
+<Pane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@../utilities/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.eagro.agroapp.gui.FertilizerResultWindow">
+   <children>
+      <ImageView fitHeight="85.0" fitWidth="300.0" layoutX="966.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo.png" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="fertilizerInfoArea" layoutX="427.0" layoutY="144.0" prefHeight="504.0" prefWidth="838.0" styleClass="justify-text" wrapText="true" />
+      <Label layoutX="89.0" layoutY="99.0" text="Αποτελέσματα:">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="173.0" text="Συνολική ποσότητα λιπάσματος:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="51.0" layoutY="214.0" text="Συνολικό κοστος λιπάσματος:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelKg" alignment="CENTER_RIGHT" layoutX="297.0" layoutY="170.0" prefHeight="34.0" prefWidth="107.0" text="00 Kg" textAlignment="RIGHT">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelPrice" alignment="CENTER_RIGHT" layoutX="296.0" layoutY="211.0" prefHeight="34.0" prefWidth="107.0" text="000 €" textAlignment="RIGHT">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Button layoutX="14.0" layoutY="676.0" mnemonicParsing="false" onAction="#openPreviousWindow" styleClass="regularBtn" text="Προηγούμενο">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="1042.0" layoutY="676.0" mnemonicParsing="false" onAction="#returnToMainMenu" styleClass="regularBtn" text="Επιστροφή στο Αρχικό Μενού" textAlignment="RIGHT">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="40.0" layoutY="273.0" mnemonicParsing="false" onAction="#createNewEntry" styleClass="regularBtn" text="Προσθήκη αποτελεσμάτων στο Ημερολόγιο">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="535.0" layoutY="104.0" text="Πληροφορίες για το είδος και την τεχνική λίπανσης">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <HBox fx:id="navigationHBox" alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="32.0" prefWidth="500.0" />
+   </children>
+</Pane>
