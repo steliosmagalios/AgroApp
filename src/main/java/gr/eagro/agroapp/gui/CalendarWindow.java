@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Callback;
@@ -26,6 +27,7 @@ public class CalendarWindow extends ApplicationWindow {
 
     @FXML private ListView<CalendarEntry> dayEntries;
     @FXML private BorderPane calendarPane;
+    @FXML private Label labelActionNumber;
 
     private Calendar calendar;
     private DatePicker datePicker;
@@ -46,9 +48,9 @@ public class CalendarWindow extends ApplicationWindow {
 
         this.observableEntries = FXCollections.observableArrayList(calendar.getEntries());
 
-        FilteredList<CalendarEntry> filteredList = new FilteredList<>(observableEntries);
-        dayEntries.setItems(filteredList.filtered(entry -> entry.getDateAsLocalDate().equals(datePicker.getValue())));
-
+        FilteredList<CalendarEntry> filteredList = new FilteredList<>(observableEntries, entry -> entry.getDateAsLocalDate().equals(datePicker.getValue()));
+        dayEntries.setItems(filteredList);
+        labelActionNumber.setText((filteredList.size() > 0) ? "Καταχωρήσεις για σήμερα: " + filteredList.size() : "Δεν υπάρχουν καταχωρήσεις.");
 
         final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
             @Override
@@ -70,8 +72,11 @@ public class CalendarWindow extends ApplicationWindow {
             }
         };
         datePicker.setDayCellFactory(dayCellFactory);
-        datePicker.valueProperty().addListener((observable, oldValue, newValue) ->
-                filteredList.setPredicate(entry -> entry.getDateAsLocalDate().equals(newValue)));
+        datePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(entry -> entry.getDateAsLocalDate().equals(newValue));
+            labelActionNumber.setText((filteredList.size() > 0) ? "Καταχωρήσεις για σήμερα: " + filteredList.size() : "Δεν υπάρχουν καταχωρήσεις.");
+        });
+
 
         DatePickerSkin datePickerSkin = new DatePickerSkin(datePicker);
         Node datePickerDisplayNode = datePickerSkin.getPopupContent();

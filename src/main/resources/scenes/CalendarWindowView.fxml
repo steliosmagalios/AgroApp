@@ -36,5 +36,10 @@
          </font>
       </Label>
       <HBox fx:id="navigationHBox" alignment="CENTER_LEFT" layoutX="20.0" layoutY="20.0" prefHeight="32.0" prefWidth="500.0" />
+      <Label fx:id="labelActionNumber" layoutX="616.0" layoutY="107.0" prefHeight="27.0" prefWidth="500.0" text="Δεν υπάρχουν καταχωρήσεις για σήμερα.">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
