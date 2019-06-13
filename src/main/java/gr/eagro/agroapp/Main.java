@@ -47,7 +47,7 @@ public class Main extends Application {
     public void init() {
 
         try {
-        loadObjects();
+            loadObjects();
         } catch (Exception e) {
             System.out.println("File not found, or is corrupted. Opening default.");
             manualInit();
@@ -134,9 +134,9 @@ public class Main extends Application {
         Fertilizer cropPumpkinFert = new Fertilizer("croppumpkinfert", 180, 180*0.7);
         Fertilizer cropBeanFert = new Fertilizer("cropbeanfert", 160, 160*1.5);
 
-        Fertilizer treeCherryFert = new Fertilizer("treecherryfert", 40, 40*1);
-        Fertilizer treeLemonFert = new Fertilizer("treelemonfert", 50, 50*1.3*0.3);
-        Fertilizer treeOrangeFert = new Fertilizer("treeorangefert", 60, 60*0.9*0.3);
+        Fertilizer treeCherryFert = new Fertilizer("treecherryfert", 40/30, 40*1.0/30);
+        Fertilizer treeLemonFert =   new Fertilizer("treelemonfert", 50/30, 50*1.3/30);
+        Fertilizer treeOrangeFert = new Fertilizer("treeorangefert", 60/30, 60*0.9/30);
 
 
 
